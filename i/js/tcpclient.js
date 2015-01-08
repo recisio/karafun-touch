@@ -5,7 +5,6 @@ TcpClient = function(host) {
         self.onOpenCallback();
     };
     this.socket.onmessage = function(msg) {
-        console.log("ok");
         self.onMessageCallback(msg);
     };
     this.socket.onclose = function() {
@@ -20,7 +19,7 @@ TcpClient.prototype = {
     onOpenCallback : function() {
     },
     onMessageCallback : function(msg) {
-        $("#receive").append(msg);
+        $("#receive").append(msg.data);
     },
     onCloseCallback : function() {
         $("#receive").append("Disconnected - status "+this.socket.readyState);
