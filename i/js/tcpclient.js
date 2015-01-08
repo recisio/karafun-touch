@@ -11,22 +11,26 @@ TcpClient = function(host) {
     this.socket.onclose = function() {
         self.onCloseCallback();
     };
+    this.socket.onerror = function(event) {
+        self.onErrorCallback(event);
+    };
 }
 
 TcpClient.prototype = {
     onOpenCallback : function() {
-        $("#content").html("You'are connected to KaraFun");
     },
     onMessageCallback : function(msg) {
-        console.log(msg);
+        $("#receive").append(msg);
     },
     onCloseCallback : function() {
-        console.log("Disconnected - status "+this.socket.readyState);
+        $("#receive").append("Disconnected - status "+this.socket.readyState);
+    },
+    onErrorCallback : function(event) {
+        console.log(event);
     },
     send: function(msg) {
         this.socket.send(msg);
+        $("#send").append(msg);
     }
     
 }
-
-tcpClient = new TcpClient("ws://dev.adrien.office:8079");
