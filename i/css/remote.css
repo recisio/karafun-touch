@@ -83,6 +83,31 @@ a.link--card{
     float: right;
 }
 
+.topbar__search{
+    height: 100px;
+    padding: 20px 60px 20px 30px;
+    font-size: 20px;
+    margin-right: 0;
+    width: 400px;
+    font-weight: 200;
+    outline: none;
+    color: #4A4A4A;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+    -webkit-transition: margin .5s ease-in-out;
+}
+
+.topbar__search_container{
+    float: right;
+    position: relative;
+}
+
+.topbar__search_container .empty_search{
+    position: absolute;
+    padding: 35px 15px 30px 15px;
+    right: 0;
+    top: 0;
+}
+
 .topbar__left img, .topbar__right img{
     display: block;
     margin: 30px auto;
@@ -128,10 +153,16 @@ a.link--card{
     margin-bottom: 1em;
 }
 
+.song_card__icon{
+    float: left;
+    margin-left: 20px;
+    margin-top: 22px;
+}
+
 .song_card__left{
     float: left;
     padding: 20px;
-    width: 80%;
+    width: 60%;
     min-width: 200px;
 }
 
