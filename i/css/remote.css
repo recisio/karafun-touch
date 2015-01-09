@@ -119,6 +119,45 @@ a.link--card{
     overflow: auto;
 }
 
+/** SONG CARD **/
+
+.song_card{
+    background: white;
+    border: 1px solid #F0F0F0;
+    border-radius: 5px;
+    margin-bottom: 1em;
+}
+
+.song_card__left{
+    float: left;
+    padding: 20px;
+    width: 80%;
+    min-width: 200px;
+}
+
+.song_card__right{
+    float: right;
+    width: 20%;
+}
+
+.song_card__title, .song_card__artist{
+    display: block;
+}
+
+.song_card__artist{
+    font-size: 15px;
+}
+
+.song_card__play{
+    float: right;
+    padding: 25px;
+}
+
+.song_card__play img{
+    display: block;
+    margin-top: 7px;
+}
+
 /** CONTROLS **/
 
 .controls{
@@ -199,45 +238,58 @@ a.link--card{
 }
 
 .controls__pitchtempo{
-    padding: 20px;
+    padding: 30px 20px;
     font-size: .7em;
 }
 
-/** SONG CARD **/
+/** VOLUME SLIDERS **/
 
-.song_card{
-    background: white;
-    border: 1px solid #F0F0F0;
+.controls__sliders{
+    text-align: center;
+}
+
+.slider_wrapper{
+    display: inline-block;
+    width: 90px;
+    margin: 0 10px;
+    vertical-align: top;
+}
+
+.slider{
+    display: inline-block;
+    height: 100%;
+    background: black;
+    width: 5px;
+    position: relative;
+}
+
+.ui-slider-handle{
+    width: 67px;
+    height: 27px;
+    background: url('../img/slider_handle.png') no-repeat center bottom;
+    position: absolute;
+    left: -31px;
+    outline: none;
+    margin-bottom: -14px;
+}
+
+.ui-slider-range{
+    position: absolute;
+    bottom: 0;
+    background-color: #4A90E2;
+    width: 4px;
+}
+
+.slider_box{
+    width: 90px;
+    height: 115px;
+    background: #2E2E2E;
+    box-shadow: 0 1px 3px rgba(0,0,0,.5) inset;
     border-radius: 5px;
-    margin-bottom: 1em;
-}
-
-.song_card__left{
-    float: left;
+    margin-bottom: 10px;
     padding: 20px;
-    width: 80%;
-    min-width: 200px;
 }
 
-.song_card__right{
-    float: right;
-    width: 20%;
-}
-
-.song_card__title, .song_card__artist{
-    display: block;
-}
-
-.song_card__artist{
-    font-size: 15px;
-}
-
-.song_card__play{
-    float: right;
-    padding: 25px;
-}
-
-.song_card__play img{
-    display: block;
-    margin-top: 7px;
+.slider__caption{
+    font-size: .7em;
 }
