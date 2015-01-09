@@ -33,7 +33,9 @@ a.link--card{
 /** MAIN LAYOUT **/
 
 .sidebar{
-    min-width: 480px;
+    min-width: 380px;
+    width: 33.33%;
+    max-width: 480px;
     background: #F0F0F0;
     height: 100%;
     float: left;
@@ -43,6 +45,7 @@ a.link--card{
     margin-left: 480px;
     background: #FAFAFA;
     height: 100vh;
+    overflow: scroll;
 }
 
 .content__inner{
@@ -117,6 +120,10 @@ a.link--card{
     background: #67003E;
 }
 
+.content .top{
+    margin-bottom: 60px;
+}
+
 /** GRID **/
 
 .column{
@@ -151,6 +158,10 @@ a.link--card{
     border: 1px solid #F0F0F0;
     border-radius: 5px;
     margin-bottom: 1em;
+}
+
+a:hover .song_card, a:active .song_card{
+    background: #fcfcfc;
 }
 
 .song_card__icon{
@@ -234,7 +245,8 @@ a.link--card{
     width: 207px;
     height: 150px;
     background: url('../img/play_next_bg.png') no-repeat center;
-    margin-left: 160px;
+    margin-left: auto;
+    margin-right: auto;
     margin-top: -40px;
     position: relative;
 }
@@ -323,4 +335,31 @@ a.link--card{
 
 .slider__caption{
     font-size: .7em;
+}
+
+/** NOTIFICATIONS **/
+
+.notification{
+    position: absolute;
+    width: 80%;
+    left: 10%;
+    bottom: -200px;
+    padding: 30px;
+    font-weight: 300;
+    color: white;
+    font-size: 1em;
+    z-index: 100;
+    border-radius: 5px;
+    box-shadow: 0 0 20px rgba(0,0,0,.3);
+    -webkit-transition: all .8s ease-in-out;
+    opacity: 0;
+}
+
+.notification--visible{
+    bottom: 50px;
+    opacity: 1;
+}
+
+.notification--error{
+    background: #c0392b;
 }

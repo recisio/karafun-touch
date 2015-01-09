@@ -42,4 +42,22 @@ $(document).ready(function () {
         tcpClient.notify("log", "Je log");
     });
 
+    function setNotification(message) {
+        $('div.notification').html(message);
+    }
+
+    function toggleNotification() {
+        $('div.notification').toggleClass('notification--visible');
+        setTimeout(function () {
+            $('div.notification').toggleClass('notification--visible');
+        }, 5000);
+    }
+
+    /* TEST ONLY */
+    $('.toggle-notification').click(function () {
+        setNotification('This is a demo notification');
+        toggleNotification();
+        return false;
+    });
+
 });
