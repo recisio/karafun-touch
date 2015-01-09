@@ -18,11 +18,14 @@ TcpClient = function(host) {
 
 TcpClient.prototype = {
     onOpenCallback : function() {
+        //Hide the socket connect window
     },
     onMessageCallback : function(msg) {
-        $(".notifications").prepend("<div>"+msg.data+"</div>");
+        $('div.notification').html(msg.data);
+        $('div.notification').toggleClass('notification--visible');
     },
     onCloseCallback : function() {
+        //Show the socket connect window
     },
     onErrorCallback : function(event) {
     },
