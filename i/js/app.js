@@ -35,5 +35,11 @@ $(document).ready(function () {
     $('.empty_search').click(function () {
         $('.topbar__search').val('');
     });
+    $('.play').click(function() {
+        tcpClient.request("status");
+    });
+    $('.next').click(function() {
+        tcpClient.notify("log", "Je log");
+    });
 
 });

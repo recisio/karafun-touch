@@ -1,5 +1,6 @@
 TcpClient = function(host) {
     var self = this;
+    this.queryId=0;
     this.socket = new WebSocket(host);
     this.socket.onopen = function() {
         self.onOpenCallback();
@@ -19,15 +20,21 @@ TcpClient.prototype = {
     onOpenCallback : function() {
     },
     onMessageCallback : function(msg) {
-        $("#receive").append(msg.data);
+        $(".notifications").prepend("<div>"+msg.data+"</div>");
     },
     onCloseCallback : function() {
     },
     onErrorCallback : function(event) {
     },
-    send: function(msg) {
-        this.socket.send(msg);
-        $("#send").append(msg);
+    incrementQueryId: function() {
+        this.queryId++;  
+    },
+    notify: function(type, value) {
+        this.socket.send("<notify type='"+type+"' value='"+value+"'/>");
+    },
+    request: function(type) {
+        this.incrementQueryId();
+        this.socket.send("<request type='"+type+"' id='"+this.queryId+"'/>");
     }
     
 }
