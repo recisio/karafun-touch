@@ -3,6 +3,8 @@
     "description": "KaraFun Remote app.",
     "version": "0.1",
     "manifest_version": 2,
+    "minimum_chrome_version" : "36",
+    "permissions" :  ["fullscreen"],
     "app": {
         "background": {
             "scripts": ["/i/js/jquery.js","/i/js/background.js","/i/js/tcpclient.js"]
