@@ -1,4 +1,169 @@
-html {
-    background: #BD4568;
-    color: #fff;
+*{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+    font-size: 20px;
+    font-weight: 300;
+    color: #4A4A4A;
+    height: 100%;
+}
+
+.clearfix{
+    clear: both;
+}
+
+/** TYPOGRAPHY **/
+
+h2{
+    font-size: .8em;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+a.link--card{
+    color: inherit;
+}
+
+/** MAIN LAYOUT **/
+
+.sidebar{
+    min-width: 480px;
+    background: #F0F0F0;
+    height: 100%;
+    float: left;
+}
+
+.content{
+    margin-left: 480px;
+    background: #FAFAFA;
+    height: 100vh;
+}
+
+.content__inner{
+    padding: 50px 30px;
+}
+
+.topbar{
+    height: 100px;
+    text-align: center;
+}
+
+.topbar h1{
+    display: inline;
+    font-size: 30px;
+    line-height: 100px;
+    color: white;
+    font-weight: 200;
+    letter-spacing: -0.04em;
+}
+
+.sidebar .topbar{
+    background: #4A4A4A;
+}
+
+.content .topbar{
+    background: #D0017D
+}
+
+.topbar__left{
+    width: 100px;
+    height: 100px;
+    float: left;
+}
+
+.topbar__right{
+    width: 100px;
+    height: 100px;
+    float: right;
+}
+
+.topbar__left img, .topbar__right img{
+    display: block;
+    margin: 30px auto;
+}
+
+.content .topbar__left{
+    background: #67003E;
+}
+
+/** GRID **/
+
+.column{
+    float: left;
+    padding: 0 2%;
+}
+
+.half{
+    width: 50%;
+}
+
+/** QUEUE **/
+
+.song_queue_wrapper{
+    position: relative;
+    height: 100vh;
+}
+
+.song_queue{
+    padding: 20px;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    height: calc(100% - 480px);
+    overflow: auto;
+}
+
+/** CONTROLS **/
+
+.controls{
+    background: #4A4A4A;
+    height: 480px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}
+
+/** SONG CARD **/
+
+.song_card{
+    background: white;
+    border: 1px solid #F0F0F0;
+    border-radius: 5px;
+    margin-bottom: 1em;
+}
+
+.song_card__left{
+    float: left;
+    padding: 20px;
+    width: 80%;
+    min-width: 200px;
+}
+
+.song_card__right{
+    float: right;
+    width: 20%;
+}
+
+.song_card__title, .song_card__artist{
+    display: block;
+}
+
+.song_card__artist{
+    font-size: 15px;
+}
+
+.song_card__play{
+    float: right;
+    padding: 25px;
+}
+
+.song_card__play img{
+    display: block;
+    margin-top: 7px;
 }
