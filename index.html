@@ -4,6 +4,9 @@
         <meta charset="utf-8">
         <title>Demo KFN Remote</title>
         <link rel="stylesheet" href="i/css/remote.css">
+        <script type="text/javascript" src="i/js/jquery.js"></script>
+        <script type="text/javascript" src="i/js/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="i/js/app.js"></script>
     </head>
     <body>
         <div class="sidebar">
@@ -33,7 +36,48 @@
                     </div>
                 </div>
                 <div class="controls">
+                    <div class="top">
+                        <div class="controls__progressbar"></div>
+                        <div class="controls__timing">
+                            <span class="elapsed">00:52</span>
+                            <span class="total">03:26</span>
+                        </div>
+                        <div class="controls__playnext">
+                            <a class="play" href="#"></a>
+                            <a class="next" href="#"></a>
+                        </div>
+                        <div class="controls__songtitle">
+                            Happy - Pharell Williams
+                        </div>
+                    </div>
+                    <div class="bottom">
+                        <div class="controls__pitchtempo">
+                            <div class="column half">
+                                <table>
+                                    <tr>
+                                        <td width="50">Pitch</td>
+                                        <td width="30" align="center"><a href="#"><img src="i/img/icon_minus.png"></a></td>
+                                        <td width="30" align="center">0</td>
+                                        <td width="30" align="center"><a href="#"><img src="i/img/icon_plus.png"></a></td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="column half">
+                                <table>
+                                    <tr>
+                                        <td width="50">Tempo</td>
+                                        <td width="30" align="center"><a href="#"><img src="i/img/icon_minus.png"></a></td>
+                                        <td width="50" align="center">100%</td>
+                                        <td width="30" align="center"><a href="#"><img src="i/img/icon_plus.png"></a></td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="controls__slider">
 
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

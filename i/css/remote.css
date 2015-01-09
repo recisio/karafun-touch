@@ -107,7 +107,7 @@ a.link--card{
 
 .song_queue_wrapper{
     position: relative;
-    height: 100vh;
+    height: calc(100vh - 100px);
 }
 
 .song_queue{
@@ -123,10 +123,84 @@ a.link--card{
 
 .controls{
     background: #4A4A4A;
+    color: white;
     height: 480px;
     width: 100%;
     position: absolute;
     bottom: 0;
+}
+
+.controls .top{
+    height: 210px;
+}
+
+.controls .bottom{
+    background: #3A3A3A;
+    height: 270px;
+}
+
+.controls__progressbar{
+    height: 3px;
+    background:#4A90E2;
+    width: 30%;
+}
+
+.controls__timing{
+    color: white;
+    font-size: .8em;
+    font-weight: 200;
+    padding: 10px;
+}
+
+.controls__timing .elapsed{
+    float: left;
+}
+
+.controls__timing .total{
+    float: right;
+}
+
+.controls__playnext{
+    width: 207px;
+    height: 150px;
+    background: url('../img/play_next_bg.png') no-repeat center;
+    margin-left: 160px;
+    margin-top: -40px;
+    position: relative;
+}
+
+.controls__playnext a.play{
+    display: block;
+    width: 130px;
+    height: 150px;
+    background: url('../img/icon_play.png') no-repeat 60px center;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.controls__playnext a.next{
+    display: block;
+    width: 77px;
+    height: 90px;
+    background: url('../img/icon_next.png') no-repeat 20px center;
+    position: absolute;
+    top: 30px;
+    right: 0;
+}
+
+.controls__songtitle{
+    color: white;
+    font-size: .8em;
+    font-weight: 200;
+    margin-top: 30px;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.controls__pitchtempo{
+    padding: 20px;
+    font-size: .7em;
 }
 
 /** SONG CARD **/

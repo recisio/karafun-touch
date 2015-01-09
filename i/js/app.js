@@ -8,3 +8,5 @@ $(document).ready(function(){
         tcpClient.send("lolo");
     })
 });
+
+// Volume sliders
