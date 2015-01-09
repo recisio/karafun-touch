@@ -22,10 +22,8 @@ TcpClient.prototype = {
         $("#receive").append(msg.data);
     },
     onCloseCallback : function() {
-        $("#receive").append("Disconnected - status "+this.socket.readyState);
     },
     onErrorCallback : function(event) {
-        //console.log(event);
     },
     send: function(msg) {
         this.socket.send(msg);

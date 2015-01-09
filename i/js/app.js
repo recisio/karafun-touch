@@ -1,9 +1,9 @@
 var tcpClient;
+var manifest;
 $(document).ready(function () {
-    //tcpClient = new TcpClient("ws://dev.adrien.office:8079");
-    $("#send-message").click(function () {
-        tcpClient.send("lolo");
-    });
+    manifest = chrome.runtime.getManifest();
+    tcpUrl = manifest.sockets.tcp.connect;
+    tcpClient = new TcpClient("ws://"+tcpUrl);
     // Volume sliders
     $(function () {
         $('.slider').each(function () {
@@ -15,7 +15,7 @@ $(document).ready(function () {
                 max: 100,
                 value: value,
                 slide: function (event, ui) {
-                    // Do something
+                // Do something
                 }
             });
         })
