@@ -18,14 +18,22 @@ $(document).ready(function () {
                     // Do something
                 }
             });
-        })
+        });
     });
 
     window.onKeyDown = function (e) {
-        if (e.keyCode == 27 /* ESC */) {
+        if (e.keyCode === 27 /* ESC */) {
             e.preventDefault();
         }
     };
 
+    $('a.topbar__right').click(function () {
+        $('.topbar__search').focus();
+        return false;
+    });
+
+    $('.empty_search').click(function () {
+        $('.topbar__search').val('');
+    });
 
 });
