@@ -29,7 +29,7 @@ TcpClient.prototype = {
     },
     onCloseCallback : function() {
         //Show the socket connect window
-        $(".splashscreen").show();
+        //$(".splashscreen").show();
         this.timeout = setTimeout(function(){
             tcpClient = new TcpClient();
         },3000);
@@ -37,7 +37,7 @@ TcpClient.prototype = {
     onErrorCallback : function(event) {
     },
     incrementQueryId: function() {
-        this.queryId++;  
+        this.queryId++;
     },
     notify: function(type, value) {
         this.socket.send("<notify type='"+type+"' value='"+value+"'/>");
@@ -46,5 +46,5 @@ TcpClient.prototype = {
         this.incrementQueryId();
         this.socket.send("<request type='"+type+"' id='"+this.queryId+"'/>");
     }
-    
+
 }

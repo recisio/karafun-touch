@@ -30,6 +30,45 @@ a.link--card{
     color: inherit;
 }
 
+.btn{
+    padding: 15px 20px;
+    font-size: 1em;
+    color: white;
+    font-weight: 400;
+    border-radius: 5px;
+    background: #ccc;
+    outline: none;
+}
+
+.btn--green{
+        background: #2ecc71;
+}
+
+/** FORMS **/
+
+input[type="text"]{
+    border: 2px solid #ccc;
+    background: white;
+    font-size: .9em;
+    display: block;
+    width: 100%;
+    outline: none;
+    padding: 10px;
+    color: inherit;
+    border-radius: 4px;
+}
+
+input[type="checkbox"]{
+    width: 40px;
+    height: 40px;
+}
+
+
+input[type="text"]:focus{
+    border-color: #bbb;
+    background-color: #fafafa;
+}
+
 /** MAIN LAYOUT **/
 
 .sidebar{
@@ -86,7 +125,7 @@ a.link--card{
     float: right;
 }
 
-.topbar__search{
+input.topbar__search{
     height: 100px;
     padding: 20px 60px 20px 30px;
     font-size: 20px;
@@ -94,12 +133,14 @@ a.link--card{
     width: 400px;
     font-weight: 200;
     outline: none;
+    border: none;
+    border-radius: 0;
     color: #4A4A4A;
     font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     -webkit-transition: width .5s ease-in-out;
 }
 
-.topbar__search:focus{
+input.topbar__search:focus{
     height: 100px;
     padding: 20px 60px 20px 30px;
     font-size: 20px;
@@ -430,6 +471,7 @@ a:active .song_card{
     display:table;
     vertical-align:middle;
     text-align: center;
+    //display: none;
 }
 
 .splashscreen__content{
@@ -450,4 +492,68 @@ a:active .song_card{
 
 .splashscreen h3{
     font-size: .8em;
+}
+
+.splashscreen #settings_splashscreen{
+    position: absolute;
+    bottom: 50px;
+    right: 50px;
+    opacity: .7;
+}
+
+/** SETTINGS **/
+
+.settings{
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: 100%;
+    font-size: .9em;
+    background: rgba(0,0,0,.8);
+    /** DEMO ONLY **/
+    display: none;
+}
+
+.settings__content{
+    padding: 50px;
+    margin: 0 auto;
+    width: 50%;
+    height: 80%;
+    margin-top: 5%;
+    background: white;
+    border-radius: 5px;
+    overflow: auto;
+}
+
+.settings h1{
+    font-size: 2em;
+    margin-bottom: 50px;
+    font-weight: 200;
+    letter-spacing: -0.05em;
+    color: #ccc;
+}
+
+.setting{
+    line-height: 45px;
+    margin-bottom: 15px;
+}
+
+.setting .caption{
+    width: 70%;
+    float: left;
+}
+
+.setting .value{
+    width: 30%;
+    float: left;
+}
+
+.settings .confirm{
+    margin-top: 50px;
+}
+
+a#settings{
+    float: right;
+    margin: 30px;
 }

@@ -537,14 +537,48 @@
                     </div>
                     <div class="clearfix"></div>
                 </div>
+                <a href="#" id="settings"><img src="i/img/settings_gray.png"></a>
             </div>
         </div>
+
+        <!-- SPLASHSCREEN -->
         <div class="splashscreen">
             <div class="splashscreen__content">
                 <img src="i/img/ajax-loader.gif">
                 <h1>Connecting with KaraFun Player...</h1>
                 <h3>It will take just a sec. If nothing happens within a couple of minutes, please make sure KaraFun Player is running.</h3>
             </div>
+            <a href="#" id="settings_splashscreen"><img src="i/img/settings_white.png"></a>
         </div>
+        <!-- END -->
+
+        <!-- SETTINGS -->
+        <div class="settings">
+            <div class="settings__content">
+                <h1>Settings</h1>
+                <form>
+                <div class="setting">
+                    <div class="caption">Port number (used to communicate with KaraFun Player)</div>
+                    <div class="value"><input name="port" type="text" value="25200"></div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="setting">
+                    <div class="caption">Server URL</div>
+                    <div class="value"><input name="port" type="text" value="http://localhost"></div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="setting">
+                    <div class="caption">Launch the app in fullscreen</div>
+                    <div class="value"><input type="checkbox" name="fullscreen"></div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="confirm">
+                    <button class="btn btn--green" name="submit">Save</button>
+                    <button class="btn btn--red" name="cancel">Cancel</button>
+                </div>
+                </form>
+            </div>
+        </div>
+        <!-- END SETTINGS -->
     </body>
 </html>
