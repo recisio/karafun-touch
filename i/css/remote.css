@@ -435,7 +435,7 @@ a:active .song_card{
     font-weight: 300;
     color: white;
     font-size: 1em;
-    z-index: 100;
+    z-index: 2;
     opacity: 0;
 }
 
@@ -471,7 +471,6 @@ a:active .song_card{
     display:table;
     vertical-align:middle;
     text-align: center;
-    //display: none;
 }
 
 .splashscreen__content{
