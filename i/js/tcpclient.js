@@ -55,7 +55,7 @@ TcpClient.prototype = {
         },3000);
     },
     _onErrorCallback : function(event) {
-    //console.log(event);
+        
     },
     _incrementQueryId: function() {
         this.queryId++;  
