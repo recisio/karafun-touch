@@ -3,5 +3,5 @@ chrome.app.runtime.onLaunched.addListener(function() {
         id : "main"
     }, function(createdWindow) {
         //createdWindow.fullscreen();
-    });
+        });
 });

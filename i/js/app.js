@@ -1,9 +1,9 @@
 var tcpClient;
 var manifest;
 $(document).ready(function () {
-    manifest = chrome.runtime.getManifest();
-    tcpUrl = manifest.sockets.tcp.connect;
-    tcpClient = new TcpClient("ws://"+tcpUrl);
+    /*manifest = chrome.runtime.getManifest();
+    tcpUrl = manifest.sockets.tcp.connect;*/
+    tcpClient = new TcpClient();
     // Volume sliders
     $(function () {
         $('.slider').each(function () {
@@ -35,7 +35,7 @@ $(document).ready(function () {
     $('.empty_search').click(function () {
         $('.topbar__search').val('');
     });
-    $('.play').click(function() {
+    $('.pause').click(function() {
         tcpClient.request("status");
     });
     $('.next').click(function() {

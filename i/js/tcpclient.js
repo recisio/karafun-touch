@@ -1,7 +1,8 @@
-TcpClient = function(host) {
+TcpClient = function() {
     var self = this;
+    this.notificationId = 0;
     this.queryId=0;
-    this.socket = new WebSocket(host);
+    this.socket = new WebSocket("ws://dev.adrien.office:57570");
     this.socket.onopen = function() {
         self.onOpenCallback();
     };
@@ -19,13 +20,19 @@ TcpClient = function(host) {
 TcpClient.prototype = {
     onOpenCallback : function() {
         //Hide the socket connect window
+        clearTimeout(this.timeout);
+        $(".splashscreen").hide();
     },
     onMessageCallback : function(msg) {
-        $('div.notification').html(msg.data);
-        $('div.notification').toggleClass('notification--visible');
+        notification = new Notification(msg.data+" "+this.notificationId++);
+        notification.message();
     },
     onCloseCallback : function() {
         //Show the socket connect window
+        $(".splashscreen").show();
+        this.timeout = setTimeout(function(){
+            tcpClient = new TcpClient();
+        },3000);
     },
     onErrorCallback : function(event) {
     },
