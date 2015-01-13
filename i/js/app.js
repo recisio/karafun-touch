@@ -1,9 +1,9 @@
 var tcpClient;
+var manifest;
 $(document).ready(function () {
-    //tcpClient = new TcpClient("ws://dev.adrien.office:8079");
-    $("#send-message").click(function () {
-        tcpClient.send("lolo");
-    });
+    manifest = chrome.runtime.getManifest();
+    tcpUrl = manifest.sockets.tcp.connect;
+    tcpClient = new TcpClient("ws://"+tcpUrl);
     // Volume sliders
     $(function () {
         $('.slider').each(function () {
@@ -15,7 +15,7 @@ $(document).ready(function () {
                 max: 100,
                 value: value,
                 slide: function (event, ui) {
-                    // Do something
+                // Do something
                 }
             });
         });
@@ -35,23 +35,11 @@ $(document).ready(function () {
     $('.empty_search').click(function () {
         $('.topbar__search').val('');
     });
-
-    function setNotification(message) {
-        $('div.notification').html(message);
-    }
-
-    function toggleNotification() {
-        $('div.notification').toggleClass('notification--visible');
-        setTimeout(function () {
-            $('div.notification').toggleClass('notification--visible');
-        }, 5000);
-    }
-
-    /* TEST ONLY */
-    $('.toggle-notification').click(function () {
-        setNotification('This is a demo notification');
-        toggleNotification();
-        return false;
+    $('.play').click(function() {
+        tcpClient.request("status");
+    });
+    $('.next').click(function() {
+        tcpClient.notify("log", "Je log");
     });
 
 });
