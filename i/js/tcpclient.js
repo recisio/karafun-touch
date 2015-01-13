@@ -48,12 +48,8 @@ TcpClient.prototype = {
     },
     _onCloseCallback : function() {
         //Show the socket connect window
-<<<<<<< HEAD
-        //$(".splashscreen").show();
-=======
-        var that = this;
         $(".splashscreen").show();
->>>>>>> b310fe11f052ce6bfc5139f6bf57e636fb909236
+        var that = this;
         this.timeout = setTimeout(function(){
             tcpClient = that.connect();
         },3000);
@@ -61,7 +57,6 @@ TcpClient.prototype = {
     _onErrorCallback : function(event) {
         
     },
-<<<<<<< HEAD
     incrementQueryId: function() {
         this.queryId++;
     },
@@ -71,10 +66,8 @@ TcpClient.prototype = {
     request: function(type) {
         this.incrementQueryId();
         this.socket.send("<request type='"+type+"' id='"+this.queryId+"'/>");
-=======
+    },
     _incrementQueryId: function() {
         this.queryId++;  
->>>>>>> b310fe11f052ce6bfc5139f6bf57e636fb909236
     }
-
 }
