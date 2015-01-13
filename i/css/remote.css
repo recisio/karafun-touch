@@ -96,7 +96,19 @@ a.link--card{
     outline: none;
     color: #4A4A4A;
     font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
-    -webkit-transition: margin .5s ease-in-out;
+    -webkit-transition: width .5s ease-in-out;
+}
+
+.topbar__search:focus{
+    height: 100px;
+    padding: 20px 60px 20px 30px;
+    font-size: 20px;
+    margin-right: 0;
+    width: 600px;
+    font-weight: 200;
+    outline: none;
+    color: #4A4A4A;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
 }
 
 .topbar__search_container{
@@ -151,6 +163,24 @@ a.link--card{
     overflow: auto;
 }
 
+.song_queue .song_card:nth-child(2)::after, .song_queue .song_card:first-of-type::after{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    font-size: .5em;
+    text-transform: uppercase;
+    color: #CACACA;
+    font-weight: 600;
+}
+
+.song_queue .song_card:first-of-type::after{
+    content:"Currently playing";
+}
+
+.song_queue .song_card:nth-child(2)::after{
+    content:"Playing next";
+}
+
 /** SONG CARD **/
 
 .song_card{
@@ -158,10 +188,16 @@ a.link--card{
     border: 1px solid #F0F0F0;
     border-radius: 5px;
     margin-bottom: 1em;
+    position: relative;
 }
 
 a:hover .song_card, a:active .song_card{
     background: #fcfcfc;
+}
+
+a:active .song_card{
+    background: #fcfcfc;
+    background: rgba(52, 152, 219,.03);
 }
 
 .song_card__icon{
@@ -256,6 +292,17 @@ a:hover .song_card, a:active .song_card{
     width: 130px;
     height: 150px;
     background: url('../img/icon_play.png') no-repeat 60px center;
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: none;
+}
+
+.controls__playnext a.pause{
+    display: block;
+    width: 130px;
+    height: 150px;
+    background: url('../img/icon_pause.png') no-repeat 56px center;
     position: absolute;
     left: 0;
     top: 0;
@@ -378,6 +425,7 @@ a:hover .song_card, a:active .song_card{
     display:table;
     vertical-align:middle;
     text-align: center;
+    display: none;
 }
 
 .splashscreen__content{
