@@ -1,9 +1,8 @@
 var tcpClient;
-var manifest;
+var settings;
 $(document).ready(function () {
-    /*manifest = chrome.runtime.getManifest();
-    tcpUrl = manifest.sockets.tcp.connect;*/
     tcpClient = new TcpClient();
+    settings =  new Settings();
     // Volume sliders
     $(function () {
         $('.slider').each(function () {
@@ -21,12 +20,6 @@ $(document).ready(function () {
         });
     });
 
-    window.onKeyDown = function (e) {
-        if (e.keyCode === 27 /* ESC */) {
-            e.preventDefault();
-        }
-    };
-
     $('a.topbar__right').click(function () {
         $('.topbar__search').focus();
         return false;
@@ -41,5 +34,4 @@ $(document).ready(function () {
     $('.next').click(function() {
         tcpClient.notify("log", "Je log");
     });
-
 });

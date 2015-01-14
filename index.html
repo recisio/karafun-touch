@@ -2,7 +2,7 @@
 <html lang="fr">
     <head>
         <meta charset="utf-8">
-        <title>Demo KFN Remote</title>
+        <title>KaraFun Remote</title>
         <link rel="stylesheet" href="i/css/remote.css">
         <script type="text/javascript" src="i/js/jquery.js"></script>
         <script type="text/javascript" src="i/js/jquery-ui.min.js"></script>
@@ -10,6 +10,7 @@
         <script type="text/javascript" src="i/js/app.js"></script>
         <script type="text/javascript" src="i/js/tcpclient.js"></script>
         <script type="text/javascript" src="i/js/notification.js"></script>
+        <script type="text/javascript" src="i/js/settings.js"></script>
     </head>
     <body>
         <div class="notifications"></div>
@@ -559,17 +560,17 @@
                 <form>
                 <div class="setting">
                     <div class="caption">Port number (used to communicate with KaraFun Player)</div>
-                    <div class="value"><input name="port" type="text" value="25200"></div>
+                    <div class="value"><input id="port" name="port" type="text" value=""></div>
                     <div class="clearfix"></div>
                 </div>
                 <div class="setting">
                     <div class="caption">Server URL</div>
-                    <div class="value"><input name="port" type="text" value="http://localhost"></div>
+                    <div class="value"><input id="url" name="url" type="text" value=""></div>
                     <div class="clearfix"></div>
                 </div>
                 <div class="setting">
                     <div class="caption">Launch the app in fullscreen</div>
-                    <div class="value"><input type="checkbox" name="fullscreen"></div>
+                    <div class="value"><input type="checkbox" name="fullscreen" id="fullscreen"></div>
                     <div class="clearfix"></div>
                 </div>
                 <div class="confirm">

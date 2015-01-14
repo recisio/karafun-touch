@@ -471,6 +471,7 @@ a:active .song_card{
     display:table;
     vertical-align:middle;
     text-align: center;
+    z-index: 3;
 }
 
 .splashscreen__content{
@@ -512,6 +513,7 @@ a:active .song_card{
     background: rgba(0,0,0,.8);
     /** DEMO ONLY **/
     display: none;
+    z-index: 5;
 }
 
 .settings__content{
