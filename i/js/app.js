@@ -7,6 +7,12 @@ $(document).ready(function () {
             tcpClient = new TcpClient(settings);
             tcpClient.connect();
             player = new Player(tcpClient);
+            $('.pause').click(function() {
+                tcpClient.request("status");
+            });
+            $('.next').click(function() {
+                tcpClient.notify("log", "Je log");
+            });
             clearTimeout();
         }
     }, 1000);
@@ -18,11 +24,5 @@ $(document).ready(function () {
 
     $('.empty_search').click(function () {
         $('.topbar__search').val('');
-    });
-    $('.pause').click(function() {
-        tcpClient.request("status");
-    });
-    $('.next').click(function() {
-        tcpClient.notify("log", "Je log");
     });
 });
