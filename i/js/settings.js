@@ -44,6 +44,7 @@ Settings.prototype = {
                 that.isReady = true;
             }
         });
+        document.querySelector(".version").innerHTML = chrome.runtime.getManifest().version;
     },
     _initHandlers: function() {
         var that = this;
