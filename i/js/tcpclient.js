@@ -1,13 +1,13 @@
-TcpClient = function() {
+TcpClient = function(settings) {
     this.notificationId = 0;
     this.queryId=0;
-    this._setConfig();
+    this.settings = settings;
 }
 
 TcpClient.prototype = {
     connect: function() {
         var that = this;
-        this.socket = new WebSocket(this.uri);
+        this.socket = new WebSocket(this.settings.getUri());
         this.socket.onopen = function() {
             that._onOpenCallback();
         };
@@ -27,15 +27,6 @@ TcpClient.prototype = {
     request: function(type) {
         this._incrementQueryId();
         this.socket.send("<request type='"+type+"' id='"+this.queryId+"'/>");
-    },
-    _setConfig: function() {
-        var that = this;
-        chrome.storage.local.get("uri",function(item){
-            if(item.uri) {
-                that.uri = item.uri;
-            }
-            that.connect();
-        });
     },
     _onOpenCallback : function() {
         //Hide the socket connect window

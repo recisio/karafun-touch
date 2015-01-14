@@ -1,25 +1,16 @@
 var tcpClient;
 var settings;
 $(document).ready(function () {
-    tcpClient = new TcpClient();
     settings =  new Settings();
-    // Volume sliders
-    $(function () {
-        $('.slider').each(function () {
-            var value = parseInt($(this).attr('data-default-volume'));
-            $(this).slider({
-                orientation: "vertical",
-                range: "min",
-                min: 0,
-                max: 100,
-                value: value,
-                slide: function (event, ui) {
-                // Do something
-                }
-            });
-        });
-    });
-
+    setTimeout(function() {
+        if(settings.isReady) {
+            tcpClient = new TcpClient(settings);
+            tcpClient.connect();
+            player = new Player(tcpClient);
+            clearTimeout();
+        }
+    }, 1000);
+    
     $('a.topbar__right').click(function () {
         $('.topbar__search').focus();
         return false;

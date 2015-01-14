@@ -1,5 +1,4 @@
 chrome.app.runtime.onLaunched.addListener(function() {
-    
     chrome.storage.local.get("uri", function(item) {
         if(!item.uri) {
             chrome.storage.local.set({

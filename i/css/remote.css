@@ -41,7 +41,7 @@ a.link--card{
 }
 
 .btn--green{
-        background: #2ecc71;
+    background: #2ecc71;
 }
 
 /** FORMS **/
@@ -385,32 +385,29 @@ a:active .song_card{
     margin: 0 10px;
     vertical-align: top;
 }
-
-.slider{
-    display: inline-block;
-    height: 100%;
-    background: black;
-    width: 5px;
-    position: relative;
-}
-
-.ui-slider-handle{
-    width: 67px;
-    height: 27px;
-    background: url('../img/slider_handle.png') no-repeat center bottom;
+.slider_wrapper input[type=range] {
+    -webkit-appearance: none;
+    transform: rotateZ(270deg);
     position: absolute;
-    left: -31px;
-    outline: none;
-    margin-bottom: -14px;
+    width: 90px;
+    bottom: 55px;
+    left: 2px;
 }
-
-.ui-slider-range{
-    position: absolute;
-    bottom: 0;
-    background-color: #4A90E2;
-    width: 4px;
+.slider_wrapper input[type=range]::-webkit-slider-runnable-track {
+    width: 300px;
+    height: 5px;
+    background: #ddd;
+    border: none;
+    border-radius: 3px;
 }
-
+.slider_wrapper input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border: none;
+    height: 67px;
+    width: 27px;
+    background: url('/i/img/slider_handle_vertical.png') no-repeat center bottom;
+    margin-top: -32px;
+}
 .slider_box{
     width: 90px;
     height: 115px;
@@ -419,6 +416,7 @@ a:active .song_card{
     border-radius: 5px;
     margin-bottom: 10px;
     padding: 20px;
+    position: relative;
 }
 
 .slider__caption{
@@ -506,16 +504,18 @@ a:active .song_card{
 .settings{
     position: fixed;
     left: 0;
-    top: 0;
+    bottom: -100%;
     height: 100vh;
     width: 100%;
     font-size: .9em;
     background: rgba(0,0,0,.8);
     /** DEMO ONLY **/
-    display: none;
     z-index: 5;
+    -webkit-transition: bottom .5s ease-in-out;
 }
-
+.settings.show {
+    bottom: 0;
+}
 .settings__content{
     padding: 50px;
     margin: 0 auto;
@@ -552,6 +552,9 @@ a:active .song_card{
 
 .settings .confirm{
     margin-top: 50px;
+}
+.settings button {
+    cursor: pointer;
 }
 
 a#settings{
