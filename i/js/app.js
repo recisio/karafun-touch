@@ -7,12 +7,6 @@ $(document).ready(function () {
             tcpClient = new TcpClient(settings);
             tcpClient.connect();
             player = new Player(tcpClient);
-            $('.pause').click(function() {
-                tcpClient.request("status");
-            });
-            $('.next').click(function() {
-                tcpClient.notify("log", "Je log");
-            });
             clearTimeout();
         }
     }, 1000);

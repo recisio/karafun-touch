@@ -10,35 +10,41 @@ Player.prototype = {
     setTempo: function() {
         
     },
-    setGeneralVolume: function(volume) {
+    _setGeneralVolume: function(volume) {
         this.tcpClient.notify("generalvolume",volume);
         
     },
-    setBackingVocalsVolume: function(volume) {
+    _setBackingVocalsVolume: function(volume) {
         this.tcpClient.notify("backingvocalsvolume",volume);
     },
-    setLeadVocals: function(volume) {
+    _setLeadVocals: function(volume) {
         this.tcpClient.notify("leadvocalsvolume",volume);
     },
     next: function() {
         
     },
-    play: function() {
+    _play: function() {
     //show pause button
     }, 
-    pause: function() {
+    _pause: function() {
     //show play button
     },
     _initHandlers: function() {
         var that = this;
         document.querySelector("#slider-general").oninput = function() {
-            that.setGeneralVolume(this.value);
+            that._setGeneralVolume(this.value);
         };
         document.querySelector("#slider-backing").oninput = function() {
-            that.setBackingVocalsVolume(this.value);
+            that._setBackingVocalsVolume(this.value);
         };
         document.querySelector("#slider-lead_1").oninput = function() {
-            that.setLeadVocals(this.value);
+            that._setLeadVocals(this.value);
+        };
+        document.querySelector(".pause").onclick = function() {
+            that._play();
+        };
+        document.querySelector(".play").onclick = function() {
+            that._pause();
         };
     }
 }
