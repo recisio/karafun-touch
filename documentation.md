@@ -2,7 +2,7 @@
 
 List of actions that can be send to the Player : 
 
-### Volume
+### volume
 
     <action type="volume">{{volume_between_0_100}}</action>
     <action type="leadvolume">{{volume_between_0_100}}</action>
