@@ -21,7 +21,7 @@ List of actions that can be send to the Player :
     <action type="seek">{{time_in_second}}</action>
 
 
-### getTree()
+### getTree
 
 call
 
@@ -38,7 +38,7 @@ response
         <treeElementName id="{{element_id}}"></treeElementName>
     </tree>
 
-### getList(id)
+### getList
 
 call
 
@@ -57,7 +57,7 @@ response
         </item>
     </list>
 
-### getStatus()
+### getStatus
 
 call
 
