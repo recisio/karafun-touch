@@ -336,11 +336,10 @@ a:active .song_card{
     position: absolute;
     left: 0;
     top: 0;
-    display: none;
 }
 
 .controls__playnext a.pause{
-    display: block;
+    display: none;
     width: 130px;
     height: 150px;
     background: url('../img/icon_pause.png') no-repeat 56px center;

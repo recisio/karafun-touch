@@ -22,7 +22,7 @@ TcpClient.prototype = {
         };
     },
     notify: function(type, value) {
-        this.socket.send("<notify type='"+type+"' value='"+value+"'/>");
+        this.socket.send("<action type='"+type+"'>"+value+"</action>");
     },
     request: function(type) {
         this._incrementQueryId();
@@ -32,6 +32,7 @@ TcpClient.prototype = {
         //Hide the socket connect window
         clearTimeout(this.timeout);
         $(".splashscreen").hide();
+        this.notify("getstatus");
     },
     _onMessageCallback : function(msg) {
         notification = new Notification(msg.data+" "+this.notificationId++);
@@ -50,15 +51,5 @@ TcpClient.prototype = {
     },
     incrementQueryId: function() {
         this.queryId++;
-    },
-    notify: function(type, value) {
-        this.socket.send("<notify type='"+type+"' value='"+value+"'/>");
-    },
-    request: function(type) {
-        this.incrementQueryId();
-        this.socket.send("<request type='"+type+"' id='"+this.queryId+"'/>");
-    },
-    _incrementQueryId: function() {
-        this.queryId++;  
     }
 }

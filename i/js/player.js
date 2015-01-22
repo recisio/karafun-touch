@@ -4,47 +4,49 @@ Player = function(tcpClient) {
 }
 
 Player.prototype = {
-    setPitch: function() {
+    setPitch: function(pitch) {
         
     },
-    setTempo: function() {
+    setTempo: function(tempo) {
         
     },
-    _setGeneralVolume: function(volume) {
-        this.tcpClient.notify("generalvolume",volume);
+    setGeneralVolume: function(volume) {
         
     },
-    _setBackingVocalsVolume: function(volume) {
-        this.tcpClient.notify("backingvocalsvolume",volume);
-    },
-    _setLeadVocals: function(volume) {
-        this.tcpClient.notify("leadvocalsvolume",volume);
-    },
-    next: function() {
+    setBackingVocalsVolume: function(volume) {
         
     },
-    _play: function() {
-    //show pause button
+    setLeadVocals: function(volume) {
+        
+    },
+    play: function() {
+        
     }, 
-    _pause: function() {
-    //show play button
+    pause: function() {
+        
+    },
+    seek: function(time) {
+        
     },
     _initHandlers: function() {
         var that = this;
         document.querySelector("#slider-general").oninput = function() {
-            that._setGeneralVolume(this.value);
+            that.tcpClient.notify("volume",this.value);
         };
         document.querySelector("#slider-backing").oninput = function() {
-            that._setBackingVocalsVolume(this.value);
+            that.tcpClient.notify("chorusvolume",this.value);
         };
         document.querySelector("#slider-lead_1").oninput = function() {
-            that._setLeadVocals(this.value);
+            that.tcpClient.notify("leadvolume",this.value);
         };
         document.querySelector(".pause").onclick = function() {
-            that._play();
+            that.tcpClient.notify("pause");
         };
         document.querySelector(".play").onclick = function() {
-            that._pause();
+            that.tcpClient.notify("play");
+        };
+        document.querySelector(".next").onclick = function() {
+            that.tcpClient.notify("next");
         };
     }
 }
