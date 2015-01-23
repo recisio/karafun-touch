@@ -58,6 +58,7 @@ Response to getStatus
     
     <action type="play"></action>
     <action type="pause"></action>
+    <action type="next"></action>
     <action type="seek">{time_in_seconds}</action>
 
 ### Volume management
