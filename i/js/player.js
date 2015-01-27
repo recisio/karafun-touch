@@ -9,6 +9,7 @@ Player = function(tcpClient) {
     this._buttonNext = document.querySelector(".next");
     this._pitch = document.querySelector("#pitch");
     this._tempo = document.querySelector("#tempo");
+    this._queue = document.querySelector(".song_queue");
     
     this._initHandlers();
 }
@@ -41,7 +42,6 @@ Player.prototype = {
         
     },
     updateStatus: function(xml) {
-        console.log(xml);
         state = xml.getAttribute("state");
         if(state == "playing") {
             this.play();
@@ -65,10 +65,19 @@ Player.prototype = {
         this.setPitch(pitch);
         tempo = xml.getElementsByTagName("tempo")[0].firstChild.nodeValue;
         this.setTempo(tempo);
-        this._setQueue(xml.getElementsByTagName("queue")[0])
+        this._setQueue(xml.getElementsByTagName("queue")[0]);
         
     },
     _setQueue: function(xml) {
+        items = xml.childNodes;
+        if(items.length) {
+            for(i=0;i<items.length;i++) {
+                song = new Song(items[i]);
+                this._queue.innerHTML+=song.render();
+            }
+        } else {
+            this._queue.innerHTML = "";
+        }
         
     },
     _initHandlers: function() {

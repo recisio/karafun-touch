@@ -214,14 +214,6 @@ input.topbar__search:focus{
     font-weight: 600;
 }
 
-.song_queue .song_card:first-of-type::after{
-    content:"Currently playing";
-}
-
-.song_queue .song_card:nth-child(2)::after{
-    content:"Playing next";
-}
-
 /** SONG CARD **/
 
 .song_card{
