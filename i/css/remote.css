@@ -300,7 +300,7 @@ a:active .song_card{
 .controls__progressbar{
     height: 3px;
     background:#4A90E2;
-    width: 30%;
+    width: 0%;
 }
 
 .controls__timing{

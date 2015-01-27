@@ -7,6 +7,7 @@ $(document).ready(function () {
             tcpClient = new TcpClient(settings);
             tcpClient.connect();
             player = new Player(tcpClient);
+            tcpClient.setPlayer(player);
             clearTimeout();
         }
     }, 1000);

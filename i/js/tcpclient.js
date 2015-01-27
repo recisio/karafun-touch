@@ -1,10 +1,13 @@
-TcpClient = function(settings) {
+TcpClient = function(settings, player) {
     this.notificationId = 0;
     this.queryId=0;
     this.settings = settings;
 }
 
 TcpClient.prototype = {
+    setPlayer: function(player) {
+        this.player = player;
+    },
     connect: function() {
         var that = this;
         this.socket = new WebSocket(this.settings.getUri());
@@ -28,6 +31,9 @@ TcpClient.prototype = {
         this._incrementQueryId();
         this.socket.send("<request type='"+type+"' id='"+this.queryId+"'/>");
     },
+    incrementQueryId: function() {
+        this.queryId++;
+    },
     _onOpenCallback : function() {
         //Hide the socket connect window
         clearTimeout(this.timeout);
@@ -35,8 +41,9 @@ TcpClient.prototype = {
         this.notify("getstatus");
     },
     _onMessageCallback : function(msg) {
-        notification = new Notification(msg.data+" "+this.notificationId++);
-        notification.message();
+        xmlDoc = new DOMParser();
+        xml = xmlDoc.parseFromString(msg.data,"text/xml");
+        this._dispatchMessage(xml);
     },
     _onCloseCallback : function() {
         //Show the socket connect window
@@ -47,9 +54,14 @@ TcpClient.prototype = {
         },3000);
     },
     _onErrorCallback : function(event) {
-        
     },
-    incrementQueryId: function() {
-        this.queryId++;
+    _dispatchMessage: function(xml) {
+        firstChild = xml.firstChild.nodeName;
+        switch(firstChild) {
+            case "status" :
+                this.player.updateStatus(xml.firstChild);
+                break;
+        }
     }
+    
 }
