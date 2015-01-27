@@ -70,14 +70,14 @@ Player.prototype = {
     },
     _setQueue: function(xml) {
         items = xml.childNodes;
+        content = "";
         if(items.length) {
             for(i=0;i<items.length;i++) {
                 song = new Song(items[i]);
-                this._queue.innerHTML+=song.render();
+                content += song.render();
             }
-        } else {
-            this._queue.innerHTML = "";
         }
+        this._queue.innerHTML = content;
         
     },
     _initHandlers: function() {
