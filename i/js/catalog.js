@@ -11,8 +11,15 @@ Catalog.prototype = {
         return html;
     },
     _initHandler: function() {
+        var that = this;
         $("body").on("click","#"+this._id,function() {
-            
+            var ev = new CustomEvent("notify_with_args", {
+                detail:{
+                    type:"getList",
+                    args:"id='"+that._id+"' offset='0' limit='10'"
+                }
+            });
+            document.dispatchEvent(ev);
         });
     },
     _parse: function(catalog) {

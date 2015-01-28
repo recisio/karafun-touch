@@ -6,6 +6,9 @@ TcpClient = function(settings) {
     document.addEventListener("notify",function(ev) {
         that.notify(ev.detail.type, ev.detail.value);
     });
+    document.addEventListener("notify_with_args",function(ev) {
+        that.notifyWithArgs(ev.detail.type, ev.detail.args);
+    });
 }
 
 TcpClient.prototype = {
@@ -27,6 +30,9 @@ TcpClient.prototype = {
     },
     notify: function(type, value) {
         this.socket.send("<action type='"+type+"'>"+value+"</action>");
+    },
+    notifyWithArgs: function(type, args) {
+        this.socket.send("<action type='"+type+"' "+args+"></action>");
     },
     incrementQueryId: function() {
         this.queryId++;

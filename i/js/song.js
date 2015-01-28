@@ -22,7 +22,7 @@ Song.prototype = {
     _getHtml: function() {
         return "<div class='song_card'>\n\
 <div class='song_card__icon'><img src='i/img/icon_song.png'></div>\n\
-<div class='song_card__left'><span class='song_card__title'>"+this.title+"</span><span class='song_card__artist'>"+this.artist+"</span></div>\n\
+<div class='song_card__left'><span class='song_card__title'>"+this._title+"</span><span class='song_card__artist'>"+this._artist+"</span></div>\n\
 <div class='clearfix'></div>\n\
 </div>";
     }

@@ -9,6 +9,7 @@ $(document).ready(function () {
             player = new Player();
             queue = new Queue();
             catalogs = new Catalogs();
+            songlist = new Songlist();
             clearTimeout();
         }
     }, 1000);
