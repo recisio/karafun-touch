@@ -28,10 +28,6 @@ TcpClient.prototype = {
     notify: function(type, value) {
         this.socket.send("<action type='"+type+"'>"+value+"</action>");
     },
-    request: function(type) {
-        this._incrementQueryId();
-        this.socket.send("<request type='"+type+"' id='"+this.queryId+"'/>");
-    },
     incrementQueryId: function() {
         this.queryId++;
     },
