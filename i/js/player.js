@@ -1,104 +1,102 @@
-Player = function(tcpClient) {
-    this.tcpClient = tcpClient;
-    
-    this._sliderGeneral = document.querySelector("#slider-general");
-    this._sliderBacking = document.querySelector("#slider-backing");
-    this._sliderLead = document.querySelector("#slider-lead_1");
-    this._buttonPause = document.querySelector(".pause");
-    this._buttonPlay = document.querySelector(".play");
-    this._buttonNext = document.querySelector(".next");
-    this._pitch = document.querySelector("#pitch");
-    this._tempo = document.querySelector("#tempo");
-    this._queue = document.querySelector(".song_queue");
-    
+Player = function() {
+    this._sliderGeneral = $("#slider-general");
+    this._sliderBacking = $("#slider-backing");
+    this._sliderLead = $("#slider-lead_1");
+    this._buttonPause = $(".pause");
+    this._buttonPlay = $(".play");
+    this._buttonNext = $(".next");
+    this._pitch = $("#pitch");
+    this._tempo = $("#tempo");
+    this._progressBar = $(".controls__progressbar");
+     
     this._initHandlers();
 }
 
 Player.prototype = {
-    setPitch: function(pitch) {
-        this._pitch.innerHTML = pitch;
+    _setPitch: function(pitch) {
+        this._pitch.html(pitch);
     },
-    setTempo: function(tempo) {
-        this._tempo.innerHTML = tempo+"%";
+    _setTempo: function(tempo) {
+        this._tempo.html(tempo+"%");
     },
-    setGeneralVolume: function(volume) {
-        this._sliderGeneral.value = volume;
+    _setGeneralVolume: function(volume) {
+        this._sliderGeneral.val(volume);
     },
-    setBackingVocalsVolume: function(volume) {
-        this._sliderBacking.value = volume;
+    _setBackingVocalsVolume: function(volume) {
+        this._sliderBacking.val(volume);
     },
-    setLeadVocals: function(volume) {
-        this._sliderLead.value = volume;
+    _setLeadVocals: function(volume) {
+        this._sliderLead.val(volume);
     },
-    play: function() {
-        this._buttonPause.style.display = "block";
-        this._buttonPlay.style.display = "none";
+    _play: function() {
+        this._buttonPause.show();
+        this._buttonPlay.hide();
     }, 
-    pause: function() {
-        this._buttonPlay.style.display = "block";
-        this._buttonPause.style.display = "none";
+    _pause: function() {
+        this._buttonPlay.show();
+        this._buttonPause.hide();
     },
-    seek: function(time) {
+    _seek: function(time) {
         
     },
-    updateStatus: function(xml) {
-        state = xml.getAttribute("state");
+    _updateStatus: function(xml) {
+        var that = this;
+        state = xml.find("status").attr("state");
         if(state == "playing") {
-            this.play();
+            this._play();
         } else {
-            this.pause();
+            this._pause();
         }
-        volumes = xml.getElementsByTagName("volumeList")[0].childNodes;
-        for(i=0;i<volumes.length;i++) {
-            volume = volumes[i].firstChild.nodeValue;
-            switch(volumes[i].nodeName) {
+        volumes = xml.find("volumeList").children();
+        volumes.each(function() {
+            volume = parseInt($(this).text());
+            switch($(this)[0].nodeName) {
                 case "general" :
-                    this.setGeneralVolume(volume);
+                    that._setGeneralVolume(volume);
                     break;
                 case "bv" :
-                    this.setBackingVocalsVolume(volume);
+                    that._setBackingVocalsVolume(volume);
                     break;
             }
-        }
-        
-        pitch = xml.getElementsByTagName("pitch")[0].firstChild.nodeValue;
-        this.setPitch(pitch);
-        tempo = xml.getElementsByTagName("tempo")[0].firstChild.nodeValue;
-        this.setTempo(tempo);
-        this._setQueue(xml.getElementsByTagName("queue")[0]);
-        
+        });
+        pitch = parseInt(xml.find("pitch").text());
+        this._setPitch(pitch);
+        tempo = parseInt(xml.find("tempo").text());
+        this._setTempo(tempo);
     },
-    _setQueue: function(xml) {
-        items = xml.childNodes;
-        content = "";
-        if(items.length) {
-            for(i=0;i<items.length;i++) {
-                song = new Song(items[i]);
-                content += song.render();
+    _fireEvent: function(type,value) {
+        var ev = new CustomEvent("notify", {
+            detail:{
+                type:type,
+                value:value
             }
-        }
-        this._queue.innerHTML = content;
-        
+        });
+        document.dispatchEvent(ev);
     },
     _initHandlers: function() {
         var that = this;
-        this._sliderGeneral.oninput = function() {
-            that.tcpClient.notify("volume",this.value);
-        };
-        this._sliderBacking.oninput = function() {
-            that.tcpClient.notify("chorusvolume",this.value);
-        };
-        this._sliderLead.oninput = function() {
-            that.tcpClient.notify("leadvolume",this.value);
-        };
-        this._buttonPause.onclick = function() {
-            that.tcpClient.notify("pause");
-        };
-        this._buttonPlay.onclick = function() {
-            that.tcpClient.notify("play");
-        };
-        this._buttonNext.onclick = function() {
-            that.tcpClient.notify("next");
-        };
+        
+        document.addEventListener('message', function(ev) {
+            that._updateStatus(ev.detail);
+        });
+        
+        this._sliderGeneral.on("input",function() {
+            that._fireEvent("volume",this.value);
+        });
+        this._sliderBacking.on("input",function() {
+            that._fireEvent("backingvolume",this.value);
+        });
+        this._sliderLead.on("input",function() {
+            that._fireEvent("leadvolume",this.value);
+        });
+        this._buttonPause.on("click",function() {
+            that._fireEvent("pause");
+        });
+        this._buttonPlay.on("click",function() {
+            that._fireEvent("play");
+        });
+        this._buttonNext.on("click",function() {
+            that._fireEvent("next");
+        }); 
     }
 }

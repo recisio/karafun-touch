@@ -6,8 +6,8 @@ $(document).ready(function () {
         if(settings.isReady) {
             tcpClient = new TcpClient(settings);
             tcpClient.connect();
-            player = new Player(tcpClient);
-            tcpClient.setPlayer(player);
+            player = new Player();
+            queue = new Queue();
             clearTimeout();
         }
     }, 1000);

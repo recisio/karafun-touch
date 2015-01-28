@@ -15,11 +15,11 @@ Song.prototype = {
         return html;
     },
     _parse: function(song) {
-        this._status = song.getAttribute("status");
-        this._title = song.getElementsByTagName("title")[0].firstChild.nodeValue;
-        this._artist = song.getElementsByTagName("artist")[0].firstChild.nodeValue;
-        this._year = song.getElementsByTagName("year")[0].firstChild.nodeValue;
-        this._duration = song.getElementsByTagName("duration")[0].firstChild.nodeValue;
+        this._status = song.attr("status");
+        this._title = song.find("title").text();
+        this._artist = song.find("artist").text();
+        this._year = song.find("year").text();
+        this._duration = song.find("duration").text();
     },
     _getHtml: function() {
         return "<div class='song_card'>\n\
