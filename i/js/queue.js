@@ -1,7 +1,7 @@
 Queue = function() {
     var that = this;
     this.container = $(".song_queue");
-    document.addEventListener('message', function(ev) {
+    document.addEventListener('status', function(ev) {
         that.updateQueue(ev.detail);
     });
 }

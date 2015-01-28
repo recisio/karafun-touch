@@ -76,7 +76,7 @@ Player.prototype = {
     _initHandlers: function() {
         var that = this;
         
-        document.addEventListener('message', function(ev) {
+        document.addEventListener('status', function(ev) {
             that._updateStatus(ev.detail);
         });
         

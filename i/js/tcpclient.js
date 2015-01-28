@@ -36,11 +36,14 @@ TcpClient.prototype = {
         clearTimeout(this.timeout);
         $(".splashscreen").hide();
         this.notify("getstatus");
+        this.notify("getCatalogList")
     },
     _onMessageCallback : function(msg) {
-        xml = $.parseXML(msg.data);
-        var event = new CustomEvent("message", {
-            "detail": $(xml)
+        str = msg.data.replace(/&/g," ");
+        xml = $($.parseXML(str));
+        eventName = xml.children().get(0).nodeName;
+        var event = new CustomEvent(eventName, {
+            "detail": xml
         }
         );
         document.dispatchEvent(event);

@@ -8,6 +8,7 @@ $(document).ready(function () {
             tcpClient.connect();
             player = new Player();
             queue = new Queue();
+            catalogs = new Catalogs();
             clearTimeout();
         }
     }, 1000);
