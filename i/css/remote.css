@@ -216,7 +216,7 @@ input.topbar__search:focus{
 
 /** SONG CARD **/
 
-.song_card{
+.song_card,.styles_card{
     background: white;
     border: 1px solid #F0F0F0;
     border-radius: 5px;
@@ -233,13 +233,13 @@ a:active .song_card{
     background: rgba(52, 152, 219,.03);
 }
 
-.song_card__icon{
+.song_card__icon, .styles_card__icon{
     float: left;
     margin-left: 20px;
     margin-top: 22px;
 }
 
-.song_card__left{
+.song_card__left,.styles_card__left{
     float: left;
     padding: 20px;
     width: 60%;
@@ -251,7 +251,7 @@ a:active .song_card{
     width: 20%;
 }
 
-.song_card__title, .song_card__artist{
+.song_card__title, .song_card__artist, .styles_card__title{
     display: block;
 }
 

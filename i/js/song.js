@@ -10,8 +10,6 @@ Song = function(songXml) {
 Song.prototype = {
     render: function() {
         html = this._getHtml();
-        html = html.replace("{SONG_NAME}", this._title);
-        html = html.replace("{ARTIST_NAME}", this._artist);
         return html;
     },
     _parse: function(song) {
@@ -24,7 +22,7 @@ Song.prototype = {
     _getHtml: function() {
         return "<div class='song_card'>\n\
 <div class='song_card__icon'><img src='i/img/icon_song.png'></div>\n\
-<div class='song_card__left'><span class='song_card__title'>{SONG_NAME}</span><span class='song_card__artist'>{ARTIST_NAME}</span></div>\n\
+<div class='song_card__left'><span class='song_card__title'>"+this.title+"</span><span class='song_card__artist'>"+this.artist+"</span></div>\n\
 <div class='clearfix'></div>\n\
 </div>";
     }
