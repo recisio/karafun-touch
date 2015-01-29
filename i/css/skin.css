@@ -1,0 +1,13 @@
+.splashscreen{
+    background: black;
+}
+
+.content{
+    background-image: url('../img/skin/bg_content.png');
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.content .topbar{
+    background: #000000 url('../img/skin/bg_topbar.png') left top;
+}
