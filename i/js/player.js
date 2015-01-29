@@ -34,7 +34,7 @@ Player.prototype = {
         var that = this;
         this._buttonPause.show();
         this._buttonPlay.hide();
-        /*var totalDuration = this._currentSong.getDuration();
+    /*var totalDuration = this._currentSong.getDuration();
         var w = parseInt($(".controls").css("width"));
         that._progressBar.css("width",((w/totalDuration)*position)+"px");
         var step = totalDuration/500;
@@ -43,11 +43,14 @@ Player.prototype = {
             console.log(w);
             that._progressBar.css("width",(w+step)+"px");
         },500);*/
-    }, 
+    },
+    _progress: function() {
+        
+    },
     _pause: function() {
         this._buttonPlay.show();
         this._buttonPause.hide();
-        //clearInterval(this._progressInterval);
+    //clearInterval(this._progressInterval);
     },
     _seek: function(time) {
         
@@ -100,8 +103,8 @@ Player.prototype = {
         });
         
         document.addEventListener('play', function(ev) {
-            that._currentSong = ev.detail.song;
-            that._songPlaying.html(that._currentSong.getString());
+            that._songPlaying.html(ev.detail.song.getString());
+            that._progress(ev.detail.song)
         });
         
         this._sliderGeneral.on("input",function() {

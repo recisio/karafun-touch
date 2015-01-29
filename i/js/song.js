@@ -24,12 +24,8 @@ Song.prototype = {
         return this._title+" - "+this._artist;
     },
     _initHandler: function() {
-        $(".content__inner").off("dblclick","#song_"+this._id).on("dblclick","#song_"+this._id,function() {
+        $(".content__inner").off("click","#song_"+this._id).on("click","#song_"+this._id,function() {
             Queue.add($(this).attr("song_id"), 99999);
-        });
-        
-        $(".content__inner").off("dragstart","#song_"+this._id).on("dragstart","#song_"+this._id,function(event) {
-            event.originalEvent.dataTransfer.setData("text", event.target.outerHTML);
         });
         
         $(".song_queue").off("dragstart","#song_"+this._id).on("dragstart","#song_"+this._id,function(event) {

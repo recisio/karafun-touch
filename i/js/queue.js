@@ -5,15 +5,6 @@ Queue = function() {
         ev.preventDefault();
     });
     
-    this.container.on("drop", function(event) {
-        event.preventDefault();
-        var data = $(event.originalEvent.dataTransfer.getData("text"));
-        song_id = data.attr("song_id");
-        if(song_id != undefined) {
-            Queue.add(data.attr("song_id"), 99999);
-        }
-    });
-    
     document.addEventListener('status', function(ev) {
         that.updateQueue(ev.detail);
     });

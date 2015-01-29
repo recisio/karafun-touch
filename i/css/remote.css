@@ -222,6 +222,7 @@ input.topbar__search:focus{
     border-radius: 5px;
     margin-bottom: 1em;
     position: relative;
+    cursor: pointer;
 }
 
 a:hover .song_card, a:active .song_card{
