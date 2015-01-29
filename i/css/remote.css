@@ -170,7 +170,7 @@ input.topbar__search:focus{
 }
 
 .content .topbar__left{
-    background: #67003E;
+    background: rgba(0,0,0,.5);
 }
 
 .content .top{
@@ -488,6 +488,13 @@ a:active .song_card{
     bottom: 50px;
     right: 50px;
     opacity: .7;
+}
+
+#loader{
+    width: 32px;
+    height: 32px;
+    margin: 0 auto;
+    background: url('../img/skin/loader.gif') no-repeat center;
 }
 
 /** SETTINGS **/
