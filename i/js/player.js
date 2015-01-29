@@ -64,11 +64,12 @@ Player.prototype = {
         tempo = parseInt(xml.find("tempo").text());
         this._setTempo(tempo);
     },
-    _fireEvent: function(type,value) {
+    _fireEvent: function(type,value, args) {
         var ev = new CustomEvent("notify", {
             detail:{
                 type:type,
-                value:value
+                value:value,
+                args:args
             }
         });
         document.dispatchEvent(ev);
@@ -81,13 +82,19 @@ Player.prototype = {
         });
         
         this._sliderGeneral.on("input",function() {
-            that._fireEvent("volume",this.value);
+            var args = [];
+            args["volume_type"] = "general";
+            that._fireEvent("setVolume",this.value, args);
         });
         this._sliderBacking.on("input",function() {
-            that._fireEvent("backingvolume",this.value);
+            var args = [];
+            args["volume_type"] = "bv";
+            that._fireEvent("setVolume",this.value, args);
         });
         this._sliderLead.on("input",function() {
-            that._fireEvent("leadvolume",this.value);
+            var args = [];
+            args["volume_type"] = "general";
+            that._fireEvent("setVolume",this.value);
         });
         this._buttonPause.on("click",function() {
             that._fireEvent("pause");
