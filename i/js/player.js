@@ -83,17 +83,17 @@ Player.prototype = {
         
         this._sliderGeneral.on("input",function() {
             var args = [];
-            args["volumeType"] = "general";
+            args["volume_type"] = "general";
             that._fireEvent("setVolume",this.value, args);
         });
         this._sliderBacking.on("input",function() {
             var args = [];
-            args["volumeType"] = "bv";
+            args["volume_type"] = "bv";
             that._fireEvent("setVolume",this.value, args);
         });
         this._sliderLead.on("input",function() {
             var args = [];
-            args["volumeType"] = "general";
+            args["volume_type"] = "general";
             that._fireEvent("setVolume",this.value);
         });
         this._buttonPause.on("click",function() {
