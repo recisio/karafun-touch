@@ -30,7 +30,7 @@ Queue.prototype = {
             if(song.isPlaying()) {
                 var ev = new CustomEvent("play", {
                     detail:{
-                        title : song.getString()
+                        song : song
                     }
                 });
                 document.dispatchEvent(ev);

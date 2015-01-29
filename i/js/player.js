@@ -7,9 +7,10 @@ Player = function() {
     this._buttonNext = $(".next");
     this._pitch = $("#pitch");
     this._tempo = $("#tempo");
-    this._songPlaying = $("#controls__songtitle");
+    this._songPlaying = $(".controls__songtitle");
     this._progressBar = $(".controls__progressbar");
-     
+    this._progressInterval = null;
+    this._currentSong = null;
     this._initHandlers();
 }
 
@@ -29,13 +30,24 @@ Player.prototype = {
     _setLeadVocals: function(volume) {
         this._sliderLead.val(volume);
     },
-    _play: function() {
+    _play: function(position) {
+        var that = this;
         this._buttonPause.show();
         this._buttonPlay.hide();
+        /*var totalDuration = this._currentSong.getDuration();
+        var w = parseInt($(".controls").css("width"));
+        that._progressBar.css("width",((w/totalDuration)*position)+"px");
+        var step = totalDuration/500;
+        this._progressInterval = setInterval(function() {
+            w = parseInt(that._progressBar.css("width"));
+            console.log(w);
+            that._progressBar.css("width",(w+step)+"px");
+        },500);*/
     }, 
     _pause: function() {
         this._buttonPlay.show();
         this._buttonPause.hide();
+        //clearInterval(this._progressInterval);
     },
     _seek: function(time) {
         
@@ -43,8 +55,13 @@ Player.prototype = {
     _updateStatus: function(xml) {
         var that = this;
         state = xml.find("status").attr("state");
+        positionSecond = 0;
+        position = xml.find("position");
+        if(position) {
+            positionSecond = parseInt(position.text());
+        }
         if(state == "playing") {
-            this._play();
+            this._play(positionSecond);
         } else {
             this._pause();
         }
@@ -83,7 +100,8 @@ Player.prototype = {
         });
         
         document.addEventListener('play', function(ev) {
-            that._songPlaying.html(ev.detail.title);
+            that._currentSong = ev.detail.song;
+            that._songPlaying.html(that._currentSong.getString());
         });
         
         this._sliderGeneral.on("input",function() {

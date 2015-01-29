@@ -17,6 +17,9 @@ Song.prototype = {
     isPlaying: function() {
         return this._status == "playing";
     },
+    getDuration: function() {
+        return this._duration;
+    },
     getString: function() {
         return this._title+" - "+this._artist;
     },
