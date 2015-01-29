@@ -8,7 +8,10 @@ Queue = function() {
     this.container.on("drop", function(event) {
         event.preventDefault();
         var data = $(event.originalEvent.dataTransfer.getData("text"));
-        Queue.add(data.attr("song_id"), 99999);
+        song_id = data.attr("song_id");
+        if(song_id != undefined) {
+            Queue.add(data.attr("song_id"), 99999);
+        }
     });
     
     document.addEventListener('status', function(ev) {
@@ -44,6 +47,19 @@ Queue.add = function(song_id, position) {
         detail:{
             type:"addToQueue",
             value:position,
+            args:args
+        }
+    });
+    document.dispatchEvent(ev);
+}
+
+Queue.changePosition = function(oldPosition, newPosition) {
+    args = new Array();
+    args["id"] = oldPosition;
+    var ev = new CustomEvent("notify", {
+        detail:{
+            type:"changeQueuePosition",
+            value:newPosition,
             args:args
         }
     });

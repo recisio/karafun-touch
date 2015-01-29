@@ -12,7 +12,7 @@ Catalog.prototype = {
     },
     _initHandler: function() {
         var that = this;
-        $("body").on("click","#catalog_"+this._id,function() {
+        $(".content__inner").on("click","#catalog_"+this._id,function() {
             var args = new Array();
             args["id"] = that._id;
             args["offset"] = 0;

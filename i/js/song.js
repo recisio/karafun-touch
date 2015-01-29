@@ -21,15 +21,26 @@ Song.prototype = {
         return this._title+" - "+this._artist;
     },
     _initHandler: function() {
-        var that = this;
-        $("body").on("dblclick","#song_"+this._id,function() {
+        $(".content__inner").off("dblclick","#song_"+this._id).on("dblclick","#song_"+this._id,function() {
             Queue.add($(this).attr("song_id"), 99999);
         });
         
-        $("body").on("dragstart","#song_"+this._id,function(event) {
+        $(".content__inner").off("dragstart","#song_"+this._id).on("dragstart","#song_"+this._id,function(event) {
             event.originalEvent.dataTransfer.setData("text", event.target.outerHTML);
         });
         
+        $(".song_queue").off("dragstart","#song_"+this._id).on("dragstart","#song_"+this._id,function(event) {
+            event.originalEvent.dataTransfer.setData("text", $(this).attr("song_id"));
+        });
+        
+        $(".song_queue").off("drop","#song_"+this._id).on("drop","#song_"+this._id,function(event) {
+            event.preventDefault();
+            var oldPosition = event.originalEvent.dataTransfer.getData("text");
+            var newPosition = $(this).attr("song_id");
+            if(oldPosition != newPosition) {
+                Queue.changePosition(oldPosition, newPosition);
+            }
+        });
     },
     _parse: function(song) {
         this._id = song.attr("id");
@@ -46,6 +57,4 @@ Song.prototype = {
 <div class='clearfix'></div>\n\
 </div>";
     }
-    
-  
 }
