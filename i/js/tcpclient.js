@@ -4,10 +4,7 @@ TcpClient = function(settings) {
     this.settings = settings;
     var that = this;
     document.addEventListener("notify",function(ev) {
-        that.notify(ev.detail.type, ev.detail.value);
-    });
-    document.addEventListener("notify_with_args",function(ev) {
-        that.notifyWithArgs(ev.detail.type, ev.detail.args);
+        that.notify(ev.detail.type, ev.detail.value, ev.detail.args);
     });
 }
 
@@ -28,11 +25,23 @@ TcpClient.prototype = {
             that._onErrorCallback(event);
         };
     },
-    notify: function(type, value) {
-        this.socket.send("<action type='"+type+"'>"+value+"</action>");
-    },
-    notifyWithArgs: function(type, args) {
-        this.socket.send("<action type='"+type+"' "+args+"></action>");
+    notify: function(type, value, args) {
+        var argsString = "";
+        if(args != undefined) {
+            for(var key in args) {
+                argsString+=" "+key+"='"+args[key]+"'";
+            }
+        }
+        var socketString ="<action type='"+type+"'";
+        if(argsString.length) {
+            socketString+=argsString;
+        }
+        socketString+=">";
+        if(value != undefined) {
+            socketString+=value;
+        }
+        socketString+="</action>";
+        this.socket.send(socketString);
     },
     incrementQueryId: function() {
         this.queryId++;

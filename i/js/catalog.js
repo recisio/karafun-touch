@@ -13,10 +13,14 @@ Catalog.prototype = {
     _initHandler: function() {
         var that = this;
         $("body").on("click","#"+this._id,function() {
-            var ev = new CustomEvent("notify_with_args", {
+            var args = new Array();
+            args["id"] = that._id;
+            args["offset"] = 0;
+            args["limit"] = 10;
+            var ev = new CustomEvent("notify", {
                 detail:{
                     type:"getList",
-                    args:"id='"+that._id+"' offset='0' limit='10'"
+                    args:args
                 }
             });
             document.dispatchEvent(ev);
