@@ -14,20 +14,16 @@ Song.prototype = {
         html = this._getHtml();
         return html;
     },
+    isPlaying: function() {
+        return this._status == "playing";
+    },
+    getString: function() {
+        return this._title+" - "+this._artist;
+    },
     _initHandler: function() {
         var that = this;
-        $("body").on("click","#song_"+this._id,function() {
-            var args = new Array();
-            args["id"] = that._id;
-            args["offset"] = 0;
-            args["limit"] = 10;
-            var ev = new CustomEvent("notify", {
-                detail:{
-                    type:"getList",
-                    args:args
-                }
-            });
-            document.dispatchEvent(ev);
+        $("body").on("dblclick","#song_"+this._id,function() {
+            Queue.add($(this).attr("song_id"), 99999);
         });
         
         $("body").on("dragstart","#song_"+this._id,function(event) {

@@ -7,6 +7,7 @@ Player = function() {
     this._buttonNext = $(".next");
     this._pitch = $("#pitch");
     this._tempo = $("#tempo");
+    this._songPlaying = $("#controls__songtitle");
     this._progressBar = $(".controls__progressbar");
      
     this._initHandlers();
@@ -79,6 +80,10 @@ Player.prototype = {
         
         document.addEventListener('status', function(ev) {
             that._updateStatus(ev.detail);
+        });
+        
+        document.addEventListener('play', function(ev) {
+            that._songPlaying.html(ev.detail.title);
         });
         
         this._sliderGeneral.on("input",function() {
