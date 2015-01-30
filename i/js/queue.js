@@ -10,6 +10,7 @@ Queue.prototype = {
         content = "";
         items.each(function(){
             song = new Song($(this));
+            song.isInQueue();
             content += song.render();
             if(song.isPlaying()) {
                 RemoteEvent.create("play", {
@@ -30,6 +31,14 @@ Queue.prototype = {
         RemoteEvent.create("notify", {
             type:"changeQueuePosition",
             value:newPosition,
+            args:args
+        });
+    },
+    _remove: function(id) {
+        var args = [];
+        args["id"] = id;
+        RemoteEvent.create("notify", {
+            type:"removeFromQueue",
             args:args
         });
     },
@@ -55,6 +64,10 @@ Queue.prototype = {
             if(oldPosition != newPosition) {
                 that._changePosition(oldPosition, newPosition);
             }
+        });
+        
+        this.container.on("click",".delete", function() {
+            that._remove($(this).parent().data("id"));
         });
     }
 }

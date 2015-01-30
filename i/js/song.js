@@ -5,6 +5,7 @@ Song = function(songXml) {
     this._duration = 0;
     this._id = 0;
     this._status = "";
+    this._isInQueue = false;
     this._parse(songXml);
 }
 
@@ -25,6 +26,9 @@ Song.prototype = {
     getId: function() {
         return this._id;
     },
+    isInQueue: function() {
+        this._isInQueue=true;
+    },
     _parse: function(song) {
         this._id = song.attr("id");
         this._status = song.attr("status");
@@ -34,10 +38,14 @@ Song.prototype = {
         this._duration = song.find("duration").text();
     },
     _getHtml: function() {
-        return "<div class='song_card' id='song_"+this._id+"' data-id='"+this._id+"' draggable='true'>\n\
-<div class='song_card__icon'><img src='i/img/icon_song.png'></div>\n\
+        html = "<div class='song_card' id='song_"+this._id+"' data-id='"+this._id+"' draggable='true'>";
+        if(this._isInQueue) {
+            html+="<img class='delete' src='/i/img/icon_delete.png'>";
+        }
+        html += "<div class='song_card__icon'><img src='i/img/icon_song.png'></div>\n\
 <div class='song_card__left'><span class='song_card__title'>"+this._title+"</span><span class='song_card__artist'>"+this._artist+"</span></div>\n\
 <div class='clearfix'></div>\n\
 </div>";
+        return html;
     }
 }

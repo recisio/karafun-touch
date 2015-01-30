@@ -227,6 +227,11 @@ input.topbar__search:focus{
     position: relative;
     cursor: pointer;
 }
+.song_card img.delete {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+}
 .styles_card:active {
     background: #D0017D;
     color:#fff;
