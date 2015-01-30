@@ -43,15 +43,15 @@ Queue.prototype = {
             that.update(ev.detail);
         });
     
-        this.container.off("dragstart",".song_card").on("dragstart",".song_card",function(event) {
+        this.container.on("dragstart",".song_card",function(event) {
             event.originalEvent.dataTransfer.effectAllowed = "move";
-            event.originalEvent.dataTransfer.setData("text", $(this).attr("song_id"));
+            event.originalEvent.dataTransfer.setData("text", $(this).data("id"));
         });
         
-        this.container.off("drop",".song_card").on("drop",".song_card",function(event) {
+        this.container.on("drop",".song_card",function(event) {
             event.preventDefault();
             var oldPosition = event.originalEvent.dataTransfer.getData("text");
-            var newPosition = $(this).attr("song_id");
+            var newPosition = $(this).data("id");
             if(oldPosition != newPosition) {
                 that._changePosition(oldPosition, newPosition);
             }

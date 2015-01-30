@@ -34,7 +34,7 @@ Song.prototype = {
         this._duration = song.find("duration").text();
     },
     _getHtml: function() {
-        return "<div class='song_card' id='song_"+this._id+"' song_id='"+this._id+"' draggable='true'>\n\
+        return "<div class='song_card' id='song_"+this._id+"' data-id='"+this._id+"' draggable='true'>\n\
 <div class='song_card__icon'><img src='i/img/icon_song.png'></div>\n\
 <div class='song_card__left'><span class='song_card__title'>"+this._title+"</span><span class='song_card__artist'>"+this._artist+"</span></div>\n\
 <div class='clearfix'></div>\n\

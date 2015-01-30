@@ -1,4 +1,4 @@
-Songlist = function(xml) {
+Songlist = function() {
     this.container = $(".content__inner .top");
     this._initHandlers();
 }
@@ -31,8 +31,8 @@ Songlist.prototype = {
             that.container.hide();
         });
         
-        $(".content__inner").off("click",".song_card").on("click",".song_card",function() {
-            Queue.add($(this).attr("song_id"), 99999);
+        $(".content__inner").on("click",".song_card",function() {
+            Queue.add($(this).data("id"), 99999);
         });
     }
 
