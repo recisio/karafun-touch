@@ -57,11 +57,7 @@ TcpClient.prototype = {
         str = msg.data.replace(/&/g," ");
         xml = $($.parseXML(str));
         eventName = xml.children().get(0).nodeName;
-        var event = new CustomEvent(eventName, {
-            "detail": xml
-        }
-        );
-        document.dispatchEvent(event);
+        RemoteEvent.create(eventName, xml)
     },
     _onCloseCallback : function() {
         //Show the socket connect window

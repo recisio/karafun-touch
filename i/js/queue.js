@@ -19,12 +19,9 @@ Queue.prototype = {
             song = new Song($(this));
             content += song.render();
             if(song.isPlaying()) {
-                var ev = new CustomEvent("play", {
-                    detail:{
-                        song : song
-                    }
+                RemoteEvent.create("play", {
+                    song:song
                 });
-                document.dispatchEvent(ev);
             }
         });
         this.container.html(content);
@@ -34,25 +31,19 @@ Queue.prototype = {
 Queue.add = function(song_id, position) {
     args = new Array();
     args["song"] = song_id;
-    var ev = new CustomEvent("notify", {
-        detail:{
-            type:"addToQueue",
-            value:position,
-            args:args
-        }
+    RemoteEvent.create("notify", {
+        type:"addToQueue",
+        value:position,
+        args:args
     });
-    document.dispatchEvent(ev);
 }
 
 Queue.changePosition = function(oldPosition, newPosition) {
     args = new Array();
     args["id"] = oldPosition;
-    var ev = new CustomEvent("notify", {
-        detail:{
-            type:"changeQueuePosition",
-            value:newPosition,
-            args:args
-        }
+    RemoteEvent.create("notify", {
+        type:"changeQueuePosition",
+        value:newPosition,
+        args:args
     });
-    document.dispatchEvent(ev);
 }

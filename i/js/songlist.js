@@ -4,6 +4,10 @@ Songlist = function(xml) {
     document.addEventListener("list", function(ev) {
         that._updateList(ev.detail);
     });
+    
+    document.addEventListener("showstyles", function(ev) {
+        that.container.hide();
+    });
 }
 
 Songlist.prototype = {
@@ -21,6 +25,8 @@ Songlist.prototype = {
             i++;
         });
         this.container.html(content);
+        this.container.show();
+        $(".genres").hide();
     }
 
 }

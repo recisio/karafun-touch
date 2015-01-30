@@ -23,12 +23,16 @@ Song.prototype = {
     getString: function() {
         return this._title+" - "+this._artist;
     },
+    getId: function() {
+        return this._id;
+    },
     _initHandler: function() {
         $(".content__inner").off("click","#song_"+this._id).on("click","#song_"+this._id,function() {
             Queue.add($(this).attr("song_id"), 99999);
         });
         
         $(".song_queue").off("dragstart","#song_"+this._id).on("dragstart","#song_"+this._id,function(event) {
+            event.originalEvent.dataTransfer.effectAllowed = "move";
             event.originalEvent.dataTransfer.setData("text", $(this).attr("song_id"));
         });
         

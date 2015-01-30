@@ -97,14 +97,11 @@ Player.prototype = {
         this._setTempo(tempo);
     },
     _fireEvent: function(type,value, args) {
-        var ev = new CustomEvent("notify", {
-            detail:{
-                type:type,
-                value:value,
-                args:args
-            }
+        RemoteEvent.create("notify", {
+            type:type,
+            value:value,
+            args:args
         });
-        document.dispatchEvent(ev);
     },
     _initHandlers: function() {
         var that = this;

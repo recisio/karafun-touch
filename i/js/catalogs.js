@@ -4,6 +4,10 @@ Catalogs = function() {
     document.addEventListener('catalogList', function(ev) {
         that.updateCatalogs(ev.detail);
     });
+    $("#home").click(function() {
+        that.container.show();
+        RemoteEvent.create("showstyles");
+    });
 }
 
 Catalogs.prototype = {
@@ -15,6 +19,7 @@ Catalogs.prototype = {
             catalog = new Catalog($(this));
             content += catalog.render();
         });
+        content+="<div class='clearfix'></div>"
         this.container.html(content);
     }
 }

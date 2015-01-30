@@ -90,6 +90,9 @@ input[type="text"]:focus{
 .content__inner{
     padding: 50px 30px;
 }
+.content__inner .top {
+    display: none;
+}
 
 .topbar{
     height: 100px;
@@ -224,7 +227,17 @@ input.topbar__search:focus{
     position: relative;
     cursor: pointer;
 }
-
+.styles_card:active {
+    background: #D0017D;
+    color:#fff;
+}
+.song_card.dragenter {
+    opacity: 0.5;
+}
+.song_card.dragstart {
+    opacity: 0.5;
+    border: 2px solid #4A4A4A;
+}
 a:hover .song_card, a:active .song_card{
     background: #fcfcfc;
 }

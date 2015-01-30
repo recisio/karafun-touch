@@ -16,14 +16,11 @@ Catalog.prototype = {
             var args = new Array();
             args["id"] = that._id;
             args["offset"] = 0;
-            args["limit"] = 10;
-            var ev = new CustomEvent("notify", {
-                detail:{
-                    type:"getList",
-                    args:args
-                }
+            args["limit"] = 20;
+            RemoteEvent.create("notify", {
+                type:"getList",
+                args:args
             });
-            document.dispatchEvent(ev);
         });
     },
     _parse: function(catalog) {
