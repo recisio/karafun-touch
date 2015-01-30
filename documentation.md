@@ -116,7 +116,7 @@ Default `limit` is 100
 ---
 Response to getList
 
-    <list>
+    <list total={total}>
         <item id="{unique_id}">
             <title>{song_name}</title>
             <artist>{artist_name}</artist>
