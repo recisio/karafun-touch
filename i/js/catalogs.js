@@ -8,11 +8,10 @@ Catalogs.prototype = {
         catalogs = xml.find("catalog");
         content = "";
         catalogs.each(function(){
-            //console.log($(this));
             catalog = new Catalog($(this));
             content += catalog.render();
         });
-        content+="<div class='clearfix'></div>"
+        content+="<div class='clearfix'></div>";
         this.container.html(content);
     },
     _initHandler: function() {
