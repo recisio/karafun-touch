@@ -88,6 +88,7 @@ Player.prototype = {
                     break;
                 case "bv" :
                     that._setBackingVocalsVolume(volume);
+                    break;
                 default:
                     that._setLeadVocalsVolume(volume);     
                     break;
