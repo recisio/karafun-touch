@@ -113,8 +113,15 @@ Response to getCatalogList
 List the songs of a catalog  
 Default `limit` is 100
 
+### Search
+
+    <action type="search" offset="{offset}" limit="{limit}">{search_string}</action>
+
+List the songs of a search 
+Default `limit` is 100
+
 ---
-Response to getList
+Response to getList/search
 
     <list total={total}>
         <item id="{unique_id}">
