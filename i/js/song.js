@@ -6,7 +6,6 @@ Song = function(songXml) {
     this._id = 0;
     this._status = "";
     this._parse(songXml);
-    this._initHandler();
 }
 
 Song.prototype = {
@@ -25,25 +24,6 @@ Song.prototype = {
     },
     getId: function() {
         return this._id;
-    },
-    _initHandler: function() {
-        $(".content__inner").off("click","#song_"+this._id).on("click","#song_"+this._id,function() {
-            Queue.add($(this).attr("song_id"), 99999);
-        });
-        
-        $(".song_queue").off("dragstart","#song_"+this._id).on("dragstart","#song_"+this._id,function(event) {
-            event.originalEvent.dataTransfer.effectAllowed = "move";
-            event.originalEvent.dataTransfer.setData("text", $(this).attr("song_id"));
-        });
-        
-        $(".song_queue").off("drop","#song_"+this._id).on("drop","#song_"+this._id,function(event) {
-            event.preventDefault();
-            var oldPosition = event.originalEvent.dataTransfer.getData("text");
-            var newPosition = $(this).attr("song_id");
-            if(oldPosition != newPosition) {
-                Queue.changePosition(oldPosition, newPosition);
-            }
-        });
     },
     _parse: function(song) {
         this._id = song.attr("id");
