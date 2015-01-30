@@ -139,5 +139,23 @@ Player.prototype = {
         this._buttonNext.on("click",function() {
             that._fireEvent("next");
         }); 
+        $(".pitch").on("click", function(){
+            p = parseInt(that._pitch.html());
+            if($(this).data("type") == 'minus') {
+                p--;
+            } else {
+                p++;
+            }
+            that._fireEvent("pitch",p);
+        });
+        $(".tempo").on("click", function(){
+            p = parseInt(that._tempo.html());
+            if($(this).data("type") == 'minus') {
+                p-=10;
+            } else {
+                p+=10;
+            }
+            that._fireEvent("tempo",p);
+        });
     }
 }
