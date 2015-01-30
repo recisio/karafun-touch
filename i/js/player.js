@@ -39,7 +39,7 @@ Player.prototype = {
         duration = song.getDuration();
         step = w/duration;
         var bw = 0;
-        /*this._progressInterval = setInterval(function() {
+    /*this._progressInterval = setInterval(function() {
             bw+= step;
             that._progressBar.width(bw);
             if(bw >= w) {
@@ -51,22 +51,33 @@ Player.prototype = {
     _pause: function() {
         this._buttonPlay.show();
         this._buttonPause.hide();
-        //clearInterval(this._progressInterval);
+    //clearInterval(this._progressInterval);
     },
     _seek: function(time) {
         
     },
+    _switchState: function(state) {
+        switch(state) {
+            case "playing" :
+                this._play();
+                break;
+            case "infoscreen":
+                this._songPlaying.empty();
+                this._progressBar.width(0);
+                this._pause();
+                break;
+            default:
+                this._pause();
+                break;
+        }
+    },
     _updateStatus: function(xml) {
         var that = this;
         state = xml.find("status").attr("state");
+        this._switchState(state);
         position = xml.find("position");
         if(position) {
             this._position = parseInt(position.text());
-        }
-        if(state == "playing") {
-            this._play();
-        } else {
-            this._pause();
         }
         volumes = xml.find("volumeList").children();
         volumes.each(function() {
