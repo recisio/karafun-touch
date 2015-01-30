@@ -27,7 +27,7 @@ Player.prototype = {
     _setBackingVocalsVolume: function(volume) {
         this._sliderBacking.val(volume);
     },
-    _setLeadVocals: function(volume) {
+    _setLeadVocalsVolume: function(volume) {
         this._sliderLead.val(volume);
     },
     _play: function() {
@@ -88,6 +88,8 @@ Player.prototype = {
                     break;
                 case "bv" :
                     that._setBackingVocalsVolume(volume);
+                default:
+                    that._setLeadVocalsVolume(volume);     
                     break;
             }
         });
