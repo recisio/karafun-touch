@@ -1,6 +1,7 @@
 Songlist = function() {
     this._total = 0;
     this._offset = 0;
+    this._countItems = 0;
     this.container = $(".content__inner .top");
     this._launchNext = false;
     this._initHandlers();
@@ -20,6 +21,7 @@ Songlist.prototype = {
             }
             content += "<div class='half column'>"+song.render()+"</div>";
             i++;
+            this._countItems++;
         });
         if(this.container.is(":visible")) {
             this.container.append(content);
@@ -49,6 +51,7 @@ Songlist.prototype = {
         document.addEventListener("showstyles", function() {
             that._offset = 0;
             that._total = 0;
+            this._countItems = 0;
             that._launchNext = false;
             that.container.empty();
             that.container.hide();
@@ -64,7 +67,7 @@ Songlist.prototype = {
                 that._loadNext();
                 return;
             }
-            if(that.container.is(":visible") && that._offset + Catalogs.limit <= that._total) {
+            if(that.container.is(":visible") && that._countItems <= that._total) {
                 if($(".song_card:last").offset().top < $(window).height()) {
                     that._launchNext = true;
                 }
