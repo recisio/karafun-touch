@@ -19,8 +19,12 @@ Catalogs.prototype = {
         document.addEventListener('catalogList', function(ev) {
             that.updateCatalogs(ev.detail);
         });
-        $("#home").click(function() {
+        
+        document.addEventListener('showstyles', function(ev) {
             that.container.show();
+        });
+        
+        $("#home").click(function() {
             RemoteEvent.create("showstyles");
         });
         $(".content__inner").on("click",".styles_card",function() {

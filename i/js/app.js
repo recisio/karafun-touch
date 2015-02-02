@@ -10,16 +10,8 @@ $(document).ready(function () {
             queue = new Queue();
             catalogs = new Catalogs();
             songlist = new Songlist();
+            search = new Search();
             clearTimeout();
         }
     }, 1000);
-    
-    $('a.topbar__right').click(function () {
-        $('.topbar__search').focus();
-        return false;
-    });
-
-    $('.empty_search').click(function () {
-        $('.topbar__search').val('');
-    });
 });
