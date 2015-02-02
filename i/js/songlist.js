@@ -1,4 +1,5 @@
 Songlist = function() {
+    this._total = 0;
     this.container = $(".content__inner .top");
     this._initHandlers();
 }
@@ -6,6 +7,7 @@ Songlist = function() {
 Songlist.prototype = {
     _updateList:function(xml) {
         list = xml.find("list");
+        this._total = list.attr("total");
         items = list.children();
         content = "";
         var i =0;
@@ -28,6 +30,7 @@ Songlist.prototype = {
         });
         
         document.addEventListener("showstyles", function(ev) {
+            that.container.empty();
             that.container.hide();
         });
         
