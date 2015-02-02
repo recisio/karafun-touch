@@ -130,8 +130,8 @@ Player.prototype = {
         });
         this._sliderLead.on("input",function() {
             var args = [];
-            args["volume_type"] = "general";
-            that._fireEvent("setVolume",this.value);
+            args["volume_type"] = "lead1";
+            that._fireEvent("setVolume",this.value, args);
         });
         this._buttonPause.on("click",function() {
             that._fireEvent("pause");
