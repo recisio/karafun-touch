@@ -29,9 +29,9 @@ Catalogs.prototype = {
         });
         $(".content__inner").on("click",".styles_card",function() {
             var args = new Array();
-            args["id"] = $(this).data("id");
+            Catalogs.listId = args["id"] = $(this).data("id");
             args["offset"] = 0;
-            args["limit"] = 20;
+            args["limit"] = Catalogs.limit;
             RemoteEvent.create("notify", {
                 type:"getList",
                 args:args
@@ -39,3 +39,6 @@ Catalogs.prototype = {
         });
     }
 }
+
+Catalogs.listId = 0;
+Catalogs.limit = 20;

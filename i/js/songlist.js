@@ -1,6 +1,8 @@
 Songlist = function() {
     this._total = 0;
+    this._offset = 0;
     this.container = $(".content__inner .top");
+    this._launchNext = false;
     this._initHandlers();
 }
 
@@ -19,9 +21,24 @@ Songlist.prototype = {
             content += "<div class='half column'>"+song.render()+"</div>";
             i++;
         });
-        this.container.html(content);
-        this.container.show();
-        $(".genres").hide();
+        if(this.container.is(":visible")) {
+            this.container.append(content);
+        } else {
+            this.container.html(content);
+            this.container.show();
+            $(".genres").hide();
+        }
+    },
+    _loadNext: function() {
+        this._offset+=Catalogs.limit;
+        var args = new Array();
+        args["id"] = Catalogs.listId;
+        args["offset"] = this._offset;
+        args["limit"] = Catalogs.limit;
+        RemoteEvent.create("notify", {
+            type:"getList",
+            args:args
+        });
     },
     _initHandlers: function() {
         var that = this;
@@ -29,13 +46,29 @@ Songlist.prototype = {
             that._updateList(ev.detail);
         });
         
-        document.addEventListener("showstyles", function(ev) {
+        document.addEventListener("showstyles", function() {
+            that._offset = 0;
+            that._total = 0;
+            that._launchNext = false;
             that.container.empty();
             that.container.hide();
         });
         
-        $(".content__inner").on("click",".song_card",function() {
+        this.container.on("click",".song_card",function() {
             Queue.add($(this).data("id"), 99999);
+        });
+        
+        $(".content").on("scroll",function(ev) {
+            if(that._launchNext) {
+                that._launchNext = false;
+                that._loadNext();
+                return;
+            }
+            if(that.container.is(":visible") && that._offset + Catalogs.limit <= that._total) {
+                if($(".song_card:last").offset().top < $(window).height()) {
+                    that._launchNext = true;
+                }
+            }
         });
     }
 
