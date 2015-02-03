@@ -18,6 +18,7 @@ Search.prototype = {
         var that = this;
         $(".topbar__search").on("keydown", function() {
             clearTimeout(that._timeout);
+            $(".content__inner .top").empty();
             var t = $(this);
             that._timeout = setTimeout(function() {
                 var args = new Array();
