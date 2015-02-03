@@ -50,7 +50,7 @@ TcpClient.prototype = {
         //Hide the socket connect window
         clearTimeout(this.timeout);
         $(".splashscreen").hide();
-        this.notify("getStatus");
+        //this.notify("getStatus");
         this.notify("getCatalogList")
     },
     _onMessageCallback : function(msg) {

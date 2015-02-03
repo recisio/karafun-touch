@@ -1,7 +1,4 @@
 Player = function() {
-    this._sliderGeneral = $("#slider-general");
-    this._sliderBacking = $("#slider-backing");
-    this._sliderLead = $("#slider-lead_1");
     this._buttonPause = $(".pause");
     this._buttonPlay = $(".play");
     this._buttonNext = $(".next");
@@ -20,15 +17,6 @@ Player.prototype = {
     },
     _setTempo: function(tempo) {
         this._tempo.html(tempo+"%");
-    },
-    _setGeneralVolume: function(volume) {
-        this._sliderGeneral.val(volume);
-    },
-    _setBackingVocalsVolume: function(volume) {
-        this._sliderBacking.val(volume);
-    },
-    _setLeadVocalsVolume: function(volume) {
-        this._sliderLead.val(volume);
     },
     _play: function() {
         this._buttonPause.show();
@@ -56,6 +44,12 @@ Player.prototype = {
     _seek: function(time) {
         
     },
+    _disableVolumes: function() {
+        $(".slider_box input.optional").attr("disabled","disabled");
+    },
+    _removeAddedSliders: function() {
+        $(".slider_box input.added").parents(".slider_wrapper").remove();
+    },
     _switchState: function(state) {
         switch(state) {
             case "playing" :
@@ -65,14 +59,48 @@ Player.prototype = {
                 this._songPlaying.empty();
                 this._progressBar.width(0);
                 this._pause();
+                this._removeAddedSliders();
+                break;
+            case "idle" :
+                this._disableVolumes();
+                this._pause();
+                this._removeAddedSliders();
                 break;
             default:
+                this._disableVolumes();
                 this._pause();
                 break;
         }
     },
+    _initVolume : function(name,caption,color,volume) {
+        var elem = $("#slider-"+name);
+        if(!elem.length) {
+            elem = this._createVolumeSlider(name);
+        }
+        elem.removeAttr("disabled");
+        elem.parent().next().html(caption);
+        elem.val(volume);
+    },
+    _createVolumeSlider: function(name) {
+        var elem = $("#slider-lead1").parents(".slider_wrapper").clone();
+        var slider = elem.find("input");
+        slider.attr("id","slider-"+name);
+        slider.attr("name",name);
+        slider.addClass("added");
+        elem.appendTo(".controls__sliders");
+        return slider;
+    },
+    _updateVolumes: function(volumes) {
+        var that=this;
+        volumes.each(function() {
+            volume = parseInt($(this).text());
+            color = $(this).attr("color");
+            caption = $(this).attr("caption");
+            name = $(this)[0].nodeName;
+            that._initVolume(name,caption,color,volume);
+        }); 
+    },
     _updateStatus: function(xml) {
-        var that = this;
         state = xml.find("status").attr("state");
         this._switchState(state);
         position = xml.find("position");
@@ -80,20 +108,7 @@ Player.prototype = {
             this._position = parseInt(position.text());
         }
         volumes = xml.find("volumeList").children();
-        volumes.each(function() {
-            volume = parseInt($(this).text());
-            switch($(this)[0].nodeName) {
-                case "general" :
-                    that._setGeneralVolume(volume);
-                    break;
-                case "bv" :
-                    that._setBackingVocalsVolume(volume);
-                    break;
-                default:
-                    that._setLeadVocalsVolume(volume);     
-                    break;
-            }
-        });
+        this._updateVolumes(volumes);
         pitch = parseInt(xml.find("pitch").text());
         this._setPitch(pitch);
         tempo = parseInt(xml.find("tempo").text());
@@ -117,22 +132,6 @@ Player.prototype = {
             that._songPlaying.html(ev.detail.song.getString());
             that._progress(ev.detail.song)
         });
-        
-        this._sliderGeneral.on("input",function() {
-            var args = [];
-            args["volume_type"] = "general";
-            that._fireEvent("setVolume",this.value, args);
-        });
-        this._sliderBacking.on("input",function() {
-            var args = [];
-            args["volume_type"] = "bv";
-            that._fireEvent("setVolume",this.value, args);
-        });
-        this._sliderLead.on("input",function() {
-            var args = [];
-            args["volume_type"] = "lead1";
-            that._fireEvent("setVolume",this.value, args);
-        });
         this._buttonPause.on("click",function() {
             that._fireEvent("pause");
         });
@@ -141,7 +140,13 @@ Player.prototype = {
         });
         this._buttonNext.on("click",function() {
             that._fireEvent("next");
-        }); 
+        });
+        $(".controls__sliders").on("input",".slider_box input", function() {
+            console.log("inpunt");
+            var args = [];
+            args["volume_type"] = $(this).attr("name");
+            that._fireEvent("setVolume",this.value, args);
+        });
         $(".pitch").on("click", function(){
             p = parseInt(that._pitch.html());
             if($(this).data("type") == 'minus') {

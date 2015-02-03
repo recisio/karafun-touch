@@ -23,7 +23,7 @@
     <body>
         <div class="notifications"></div>
         <div class="sidebar">
-            <div class="topbar"><h1>Song Queue</h1></div>
+            <div class="topbar"><h1>Queue</h1></div>
             <div class="song_queue_wrapper">
                 <div class="song_queue"></div>
                 <div class="controls">
@@ -67,26 +67,22 @@
                         <div class="controls__sliders">
                             <div class="slider_wrapper">
                                 <div class="slider_box">
-                                    <input type="range" min="0" max="100" value="0" id="slider-general">
+                                    <input type="range" name="general" min="0" max="100" value="0" id="slider-general">
                                 </div>
-                                <div class="slider__caption">General volume</div>
+                                <div class="slider__caption">Générak</div>
                             </div>
-
                             <div class="slider_wrapper">
                                 <div class="slider_box">
-                                    <input type="range" min="0" max="100" value="0" id="slider-backing">
+                                    <input type="range" name="bv" class="optional" min="0" max="100" value="0" id="slider-bv">
                                 </div>
-                                <div class="slider__caption">Backing vocals volume</div>
+                                <div class="slider__caption">Choeurs</div>
                             </div>
-
                             <div class="slider_wrapper">
                                 <div class="slider_box">
-                                    <input type="range" min="0" max="100" value="0" id="slider-lead_1">
+                                    <input type="range" name="lead1" class="optional" min="0" max="100" value="0" id="slider-lead1">
                                 </div>
-                                <div class="slider__caption">Lead vocals</div>
+                                <div class="slider__caption">Guide</div>
                             </div>
-
-                            <div class="clearfix"></div>
                         </div>
                     </div>
                 </div>
