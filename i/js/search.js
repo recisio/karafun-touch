@@ -1,5 +1,6 @@
 Search = function() {
     this._timeout = null;
+    this.container = $(".content__inner .top");
     this._initHandlers();
 }
 
@@ -18,7 +19,7 @@ Search.prototype = {
         var that = this;
         $(".topbar__search").on("keydown", function() {
             clearTimeout(that._timeout);
-            $(".content__inner .top").empty();
+            that.container.empty();
             var t = $(this);
             that._timeout = setTimeout(function() {
                 var args = new Array();
