@@ -29,8 +29,6 @@ $(document).ready(function () {
         }, 500);
     }).on('mouseup', '.lift', function () {
         $(this).removeClass('lifted');
-    }).on('mouseup', '.song_card', function () {
-        $(this).children('.card__popup').css('display', 'initial').addClass('visible');
     });
 
 });

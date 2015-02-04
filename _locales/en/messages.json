@@ -27,5 +27,14 @@
     },
     "lead": {
         "message": "Lead"
+    },
+    "play_now": {
+        "message" : "Play now"
+    },
+    "add_to_queue": {
+        "message" : "Add to queue"
+    },
+    "cancel": {
+        "message" : "Cancel"
     }
 }

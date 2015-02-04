@@ -137,6 +137,16 @@ Player.prototype = {
         this._buttonNext.on("click",function() {
             that._fireEvent("next");
         });
+        $(".controls__sliders").on("click",".slider__caption", function() {
+            var input = $(this).prev().find("input");
+            var currentVol = input.val();
+            if(currentVol > 0) {
+                currentVol = 0;
+            }
+            var args = [];
+            args["volume_type"] = input.attr('name');
+            that._fireEvent("setVolume",currentVol, args);
+        });
         $(".controls__sliders").on("input",".slider_box input", function() {
             var args = [];
             args["volume_type"] = $(this).attr("name");

@@ -44,8 +44,15 @@ Song.prototype = {
         }
         html += "<div class='song_card__icon'><img src='i/img/icon_song.png'></div>\n\
 <div class='song_card__left'><span class='song_card__title'>"+this._title+"</span><span class='song_card__artist'>"+this._artist+"</span></div>\n\
-<div class='clearfix'></div>\n\
+<div class='clearfix'></div>";
+        if(!this._isInQueue) {
+            html+="<div class='card__popup'>\n\
+<a href='#' class='click_feedback' data-action='play'>"+chrome.i18n.getMessage("play_now")+"</a>\n\
+<a href='#' class='click_feedback' data-action='queue'>"+chrome.i18n.getMessage("add_to_queue")+"</a>\n\
+<a href='#' class='click_feedback' data-action='cancel'>"+chrome.i18n.getMessage("cancel")+"</a>\n\
 </div>";
+        }
+        html+="</div>";
         return html;
     }
 }

@@ -57,8 +57,24 @@ Songlist.prototype = {
             that.container.hide();
         });
         
-        this.container.on("click",".song_card",function() {
-            Queue.add($(this).data("id"), 99999);
+        this.container.on("mouseup",".song_card",function() {
+            $('.card__popup').css('display', 'none');
+            $(this).children('.card__popup').css('display', 'initial').addClass('visible');
+        });
+        
+        this.container.on("click",".click_feedback",function() {
+            var action = $(this).data("action");
+            switch(action) {
+                case "play":
+                    Queue.add($(this).parents(".song_card").data("id"), 0);
+                    break;
+                case "queue":
+                    Queue.add($(this).parents(".song_card").data("id"), 99999);
+                    break;
+                case "cancel":
+                    break;
+            }
+            $(this).parents(".card__popup").css("display","none");
         });
         
         $(".content").on("scroll",function(ev) {

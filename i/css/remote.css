@@ -311,6 +311,7 @@ a:active .song_card{
     padding: 20px;
     opacity: 0;
     display: none;
+    z-index: 2;
 }
 
 .card__popup.visible{

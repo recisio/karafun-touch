@@ -27,5 +27,14 @@
     },
     "lead": {
         "message": "Guide"
+    },
+    "play_now": {
+        "message" : "Jouer"
+    },
+    "add_to_queue": {
+        "message" : "Ajouter à la file d'attente"
+    },
+    "cancel": {
+        "message" : "Annuler"
     }
 }

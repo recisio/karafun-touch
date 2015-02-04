@@ -15,13 +15,13 @@ Catalog.prototype = {
     },
     _getHtml: function() {
         return '<div class="column half">\n\
-<a class="link--card" href="#">\n\
 <div class="styles_card" id="catalog_'+this._id+'" data-id="'+this._id+'">\n\
+<a class="link--card click_feedback" href="#">\n\
 <div class="styles_card__icon"><img src="i/img/genre_2.png"></div>\n\
 <div class="styles_card__left"><span class="styles_card__title">'+this._caption+'</span></div>\n\
 <div class="clearfix"></div>\n\
-</div>\n\
 </a>\n\
+</div>\n\
 </div>';
     }
     
