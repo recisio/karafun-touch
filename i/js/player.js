@@ -62,9 +62,7 @@ Player.prototype = {
                 this._removeAddedSliders();
                 break;
             case "idle" :
-                this._disableVolumes();
                 this._pause();
-                this._removeAddedSliders();
                 break;
             default:
                 this._disableVolumes();
@@ -142,7 +140,6 @@ Player.prototype = {
             that._fireEvent("next");
         });
         $(".controls__sliders").on("input",".slider_box input", function() {
-            console.log("inpunt");
             var args = [];
             args["volume_type"] = $(this).attr("name");
             that._fireEvent("setVolume",this.value, args);
