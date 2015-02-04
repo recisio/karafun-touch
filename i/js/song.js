@@ -29,6 +29,11 @@ Song.prototype = {
     isInQueue: function() {
         this._isInQueue=true;
     },
+    getFormattedDuration: function() {
+        var minutes = Math.floor(this._duration / 60);
+        var seconds = this._duration - minutes * 60;
+        return minutes+":"+seconds;
+    },
     _parse: function(song) {
         this._id = song.attr("id");
         this._status = song.attr("status");
@@ -44,6 +49,7 @@ Song.prototype = {
         }
         html += "<div class='song_card__icon'><img src='i/img/icon_song.png'></div>\n\
 <div class='song_card__left'><span class='song_card__title'>"+this._title+"</span><span class='song_card__artist'>"+this._artist+"</span></div>\n\
+<div class='song_card__right'>"+this.getFormattedDuration()+"</div>\n\
 <div class='clearfix'></div>";
         if(!this._isInQueue) {
             html+="<div class='card__popup'>\n\

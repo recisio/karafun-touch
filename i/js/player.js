@@ -24,6 +24,7 @@ Player.prototype = {
         this._buttonPlay.hide();
     },
     _progress: function(song) {
+        clearInterval(this._progressInterval);
         var w = parseInt($(".controls").width());
         var duration = song.getDuration();
         var step = w/duration*(Player.intervalProgress/1000);
