@@ -1,0 +1,28 @@
+{
+    "appName": {
+        "message": "KaraFun Remote",
+        "description": "Le titre de l'application sur le Web Store"
+    },
+    "appDesc": {
+        "message": "Controlez KaraFun Player à distance!", 
+        "description":"La description de l'application sur le Web Store"
+    },
+    "queue": {
+        "message": "File d'attente" 
+    },
+    "search": {
+        "message": "Entrez votre recherche"
+    },
+    "connecting": {
+        "message": "Connextion avec KaraFun Player..."
+    },
+    "connecting_desc": {
+        "message": "Cela peut prendre quelques secondes. Si rien ne se passe, soyez sur que KaraFun Player est en cours de fonctionnement."
+    },
+    "pitch": {
+        "message": "Pitch"
+    },
+    "tempo": {
+        "message": "Tempo"
+    }
+}

@@ -1,0 +1,28 @@
+{
+    "appName": {
+        "message": "KaraFun Remote",
+        "description": "The title of the application, displayed in the web store."
+    },
+    "appDesc": {
+        "message": "Control your KaraFun Player!", 
+        "description":"The description of the application, displayed in the web store."
+    },
+    "queue": {
+        "message": "Queue" 
+    },
+    "search": {
+        "message": "Enter your search here"
+    },
+    "connecting": {
+        "message": "Connecting with KaraFun Player..."
+    },
+    "connecting_desc": {
+        "message": "It will take just a sec. If nothing happens within a couple of minutes, please make sure KaraFun Player is running."
+    },
+    "pitch": {
+        "message": "Key"
+    },
+    "tempo": {
+        "message": "Tempo"
+    }
+}
