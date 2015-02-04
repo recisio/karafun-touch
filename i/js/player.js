@@ -42,9 +42,10 @@ Player.prototype = {
         this._buttonPlay.show();
         this._buttonPause.hide();
         clearInterval(this._progressInterval);
-        if(parseInt(this._progressBar.width()) == 0) {
+        if(this._position == 0) {
             this._songPlaying.empty();
             this._removeAddedSliders();
+            this._progressBar.width(0);
         }
     },
     _removeAddedSliders: function() {
@@ -57,7 +58,6 @@ Player.prototype = {
                 break;
             case "infoscreen":
                 this._pause();
-                this._progressBar.width(0);
                 break;
             default:
                 this._pause();
@@ -100,6 +100,8 @@ Player.prototype = {
         position = xml.find("position");
         if(position) {
             this._position = parseInt(position.text());
+        } else {
+            this._position = 0;
         }
         volumes = xml.find("volumeList").children();
         this._updateVolumes(volumes);
