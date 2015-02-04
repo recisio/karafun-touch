@@ -24,31 +24,31 @@ Player.prototype = {
     },
     _progress: function(song) {
         var w = parseInt($(".controls").width());
-        duration = song.getDuration();
-        step = w/duration;
-        var bw = 0;
-    /*this._progressInterval = setInterval(function() {
-            bw+= step;
-            that._progressBar.width(bw);
-            if(bw >= w) {
+        var duration = song.getDuration();
+        var step = w/duration*(Player.intervalProgress/1000);
+        var baseWidth = w/duration*this._position;
+        this._progressBar.width(baseWidth);
+        var that = this;
+        this._progressInterval = setInterval(function() {
+            baseWidth+= step;
+            that._progressBar.width(baseWidth);
+            if(baseWidth >= w) {
                 that._progressBar.width(0);
                 clearInterval(that._progressInterval);
             }
-        },1000);*/
+        },Player.intervalProgress);
     },
     _pause: function() {
         this._buttonPlay.show();
         this._buttonPause.hide();
-    //clearInterval(this._progressInterval);
-    },
-    _seek: function(time) {
-        
-    },
-    _disableVolumes: function() {
-        $(".slider_box input.optional").attr("disabled","disabled");
+        clearInterval(this._progressInterval);
+        if(parseInt(this._progressBar.width()) == 0) {
+            this._songPlaying.empty();
+            this._removeAddedSliders();
+        }
     },
     _removeAddedSliders: function() {
-        $(".slider_box input.added").parents(".slider_wrapper").remove();
+        $(".slider_box input.optional").parents(".slider_wrapper").remove();
     },
     _switchState: function(state) {
         switch(state) {
@@ -56,16 +56,10 @@ Player.prototype = {
                 this._play();
                 break;
             case "infoscreen":
-                this._songPlaying.empty();
+                this._pause();
                 this._progressBar.width(0);
-                this._pause();
-                this._removeAddedSliders();
-                break;
-            case "idle" :
-                this._pause();
                 break;
             default:
-                this._disableVolumes();
                 this._pause();
                 break;
         }
@@ -75,16 +69,15 @@ Player.prototype = {
         if(!elem.length) {
             elem = this._createVolumeSlider(name);
         }
-        elem.removeAttr("disabled");
         elem.parent().next().html(caption);
         elem.val(volume);
     },
     _createVolumeSlider: function(name) {
-        var elem = $("#slider-lead1").parents(".slider_wrapper").clone();
+        var elem = $("#slider-general").parents(".slider_wrapper").clone();
         var slider = elem.find("input");
         slider.attr("id","slider-"+name);
         slider.attr("name",name);
-        slider.addClass("added");
+        slider.addClass("optional");
         elem.appendTo(".controls__sliders");
         return slider;
     },
@@ -164,3 +157,5 @@ Player.prototype = {
         });
     }
 }
+
+Player.intervalProgress = 500;
