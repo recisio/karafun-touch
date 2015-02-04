@@ -11,7 +11,7 @@
         <script type="text/javascript" src="i/js/tcpclient.js"></script>
         <script type="text/javascript" src="i/js/remoteevent.js"></script>
         <script type="text/javascript" src="i/js/notification.js"></script>
-        <script type="text/javascript" src="i/js/settings.js"></script>
+        <!--<script type="text/javascript" src="i/js/settings.js"></script>-->
         <script type="text/javascript" src="i/js/song.js"></script>
         <script type="text/javascript" src="i/js/player.js"></script>
         <script type="text/javascript" src="i/js/queue.js"></script>
@@ -21,6 +21,8 @@
         <script type="text/javascript" src="i/js/search.js"></script>
     </head>
     <body>
+        <video id="video_background" autoplay loop src="i/videos/video_bg_2.mp4">
+        </video>
         <div class="notifications"></div>
         <div class="sidebar">
             <div class="topbar"><h1>Song Queue</h1></div>
@@ -104,7 +106,24 @@
             </div>
             <div class="content__inner">
                 <div class="top"></div>
-                <div class="genres"></div>
+                <div class="genres">
+
+                    <div class="column half">
+                        <div class="song_card" id="catalog_'+this._id+'" data-id="'+this._id+'">
+                            <a class="link--card lift click_feedback" href="#">
+                                <div class="styles_card__icon"><img src="i/img/genre_2.png"></div>
+                                <div class="styles_card__left"><span class="styles_card__title">'+this._caption+'</span></div>
+                                <div class="clearfix"></div>
+                            </a>
+                            <div class="card__popup">
+                                <a href="#" class="click_feedback">Play now</a>
+                                <a href="#" class="click_feedback">Add to queue</a>
+                                <a href="#" class="click_feedback">Cancel</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
                 <a href="#" id="settings"><img src="i/img/settings_gray.png"></a>
             </div>
         </div>
