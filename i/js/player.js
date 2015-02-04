@@ -9,6 +9,7 @@ Player = function() {
     this._progressInterval = null;
     this._position = 0;
     this._initHandlers();
+    this._volumes = new Array();
 }
 
 Player.prototype = {
@@ -139,13 +140,17 @@ Player.prototype = {
         });
         $(".controls__sliders").on("click",".slider__caption", function() {
             var input = $(this).prev().find("input");
-            var currentVol = input.val();
-            if(currentVol > 0) {
-                currentVol = 0;
+            var currentVolume = input.val();
+            var name = input.attr('name');
+            if(currentVolume > 0) {
+                that._volumes[name] = currentVolume;
+                currentVolume = 0;
+            } else {
+                currentVolume = that._volumes[name];
             }
             var args = [];
-            args["volume_type"] = input.attr('name');
-            that._fireEvent("setVolume",currentVol, args);
+            args["volume_type"] = name;
+            that._fireEvent("setVolume",currentVolume, args);
         });
         $(".controls__sliders").on("input",".slider_box input", function() {
             var args = [];

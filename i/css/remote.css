@@ -492,6 +492,7 @@ a:active .song_card{
 
 .slider__caption{
     font-size: .7em;
+    cursor: pointer;
 }
 
 /** NOTIFICATIONS **/
