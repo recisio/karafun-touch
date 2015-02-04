@@ -2,9 +2,9 @@ var tcpClient;
 var settings;
 var eff_timeout;
 $(document).ready(function () {
-    //settings = new Settings();
+    settings = new Settings();
     setTimeout(function () {
-        if (settings.isReady = 1) {
+        if (settings.isReady == 1) {
             tcpClient = new TcpClient(settings);
             tcpClient.connect();
             player = new Player();

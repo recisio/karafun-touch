@@ -50,12 +50,11 @@ TcpClient.prototype = {
         //Hide the socket connect window
         clearTimeout(this.timeout);
         $(".splashscreen").hide();
-        this.notify("getStatus");
+        //this.notify("getStatus");
         this.notify("getCatalogList")
     },
     _onMessageCallback : function(msg) {
-        str = msg.data.replace(/&/g," ");
-        xml = $($.parseXML(str));
+        xml = $($.parseXML(msg.data));
         eventName = xml.children().get(0).nodeName;
         RemoteEvent.create(eventName, xml)
     },

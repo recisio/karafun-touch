@@ -1,7 +1,4 @@
 Player = function() {
-    this._sliderGeneral = $("#slider-general");
-    this._sliderBacking = $("#slider-backing");
-    this._sliderLead = $("#slider-lead_1");
     this._buttonPause = $(".pause");
     this._buttonPlay = $(".play");
     this._buttonNext = $(".next");
@@ -21,40 +18,38 @@ Player.prototype = {
     _setTempo: function(tempo) {
         this._tempo.html(tempo+"%");
     },
-    _setGeneralVolume: function(volume) {
-        this._sliderGeneral.val(volume);
-    },
-    _setBackingVocalsVolume: function(volume) {
-        this._sliderBacking.val(volume);
-    },
-    _setLeadVocalsVolume: function(volume) {
-        this._sliderLead.val(volume);
-    },
     _play: function() {
         this._buttonPause.show();
         this._buttonPlay.hide();
     },
     _progress: function(song) {
         var w = parseInt($(".controls").width());
-        duration = song.getDuration();
-        step = w/duration;
-        var bw = 0;
-    /*this._progressInterval = setInterval(function() {
-            bw+= step;
-            that._progressBar.width(bw);
-            if(bw >= w) {
+        var duration = song.getDuration();
+        var step = w/duration*(Player.intervalProgress/1000);
+        var baseWidth = w/duration*this._position;
+        this._progressBar.width(baseWidth);
+        var that = this;
+        this._progressInterval = setInterval(function() {
+            baseWidth+= step;
+            that._progressBar.width(baseWidth);
+            if(baseWidth >= w) {
                 that._progressBar.width(0);
                 clearInterval(that._progressInterval);
             }
-        },1000);*/
+        },Player.intervalProgress);
     },
     _pause: function() {
         this._buttonPlay.show();
         this._buttonPause.hide();
-    //clearInterval(this._progressInterval);
+        clearInterval(this._progressInterval);
+        if(this._position == 0) {
+            this._songPlaying.empty();
+            this._removeAddedSliders();
+            this._progressBar.width(0);
+        }
     },
-    _seek: function(time) {
-        
+    _removeAddedSliders: function() {
+        $(".slider_box input.optional").parents(".slider_wrapper").remove();
     },
     _switchState: function(state) {
         switch(state) {
@@ -62,8 +57,6 @@ Player.prototype = {
                 this._play();
                 break;
             case "infoscreen":
-                this._songPlaying.empty();
-                this._progressBar.width(0);
                 this._pause();
                 break;
             default:
@@ -71,29 +64,47 @@ Player.prototype = {
                 break;
         }
     },
+    _initVolume : function(name,caption,color,volume) {
+        var elem = $("#slider-"+name);
+        if(!elem.length) {
+            elem = this._createVolumeSlider(name);
+        }
+        if(caption.length == 0 && name.indexOf("lead")>-1) {
+            caption = chrome.i18n.getMessage("lead");
+        }
+        elem.parent().next().html(caption);
+        elem.val(volume);
+    },
+    _createVolumeSlider: function(name) {
+        var elem = $("#slider-general").parents(".slider_wrapper").clone();
+        var slider = elem.find("input");
+        slider.attr("id","slider-"+name);
+        slider.attr("name",name);
+        slider.addClass("optional");
+        elem.appendTo(".controls__sliders");
+        return slider;
+    },
+    _updateVolumes: function(volumes) {
+        var that=this;
+        volumes.each(function() {
+            volume = parseInt($(this).text());
+            color = $(this).attr("color");
+            caption = $(this).attr("caption");
+            name = $(this)[0].nodeName;
+            that._initVolume(name,caption,color,volume);
+        }); 
+    },
     _updateStatus: function(xml) {
-        var that = this;
         state = xml.find("status").attr("state");
         this._switchState(state);
         position = xml.find("position");
         if(position) {
             this._position = parseInt(position.text());
+        } else {
+            this._position = 0;
         }
         volumes = xml.find("volumeList").children();
-        volumes.each(function() {
-            volume = parseInt($(this).text());
-            switch($(this)[0].nodeName) {
-                case "general" :
-                    that._setGeneralVolume(volume);
-                    break;
-                case "bv" :
-                    that._setBackingVocalsVolume(volume);
-                    break;
-                default:
-                    that._setLeadVocalsVolume(volume);     
-                    break;
-            }
-        });
+        this._updateVolumes(volumes);
         pitch = parseInt(xml.find("pitch").text());
         this._setPitch(pitch);
         tempo = parseInt(xml.find("tempo").text());
@@ -117,22 +128,6 @@ Player.prototype = {
             that._songPlaying.html(ev.detail.song.getString());
             that._progress(ev.detail.song)
         });
-        
-        this._sliderGeneral.on("input",function() {
-            var args = [];
-            args["volume_type"] = "general";
-            that._fireEvent("setVolume",this.value, args);
-        });
-        this._sliderBacking.on("input",function() {
-            var args = [];
-            args["volume_type"] = "bv";
-            that._fireEvent("setVolume",this.value, args);
-        });
-        this._sliderLead.on("input",function() {
-            var args = [];
-            args["volume_type"] = "general";
-            that._fireEvent("setVolume",this.value);
-        });
         this._buttonPause.on("click",function() {
             that._fireEvent("pause");
         });
@@ -141,7 +136,12 @@ Player.prototype = {
         });
         this._buttonNext.on("click",function() {
             that._fireEvent("next");
-        }); 
+        });
+        $(".controls__sliders").on("input",".slider_box input", function() {
+            var args = [];
+            args["volume_type"] = $(this).attr("name");
+            that._fireEvent("setVolume",this.value, args);
+        });
         $(".pitch").on("click", function(){
             p = parseInt(that._pitch.html());
             if($(this).data("type") == 'minus') {
@@ -162,3 +162,5 @@ Player.prototype = {
         });
     }
 }
+
+Player.intervalProgress = 500;

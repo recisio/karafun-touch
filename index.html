@@ -7,6 +7,7 @@
         <!--link rel="stylesheet" href="i/css/skin.css"-->
         <script type="text/javascript" src="i/js/jquery.js"></script>
         <script type="text/javascript" src="i/js/jquery-touch.min.js"></script>
+        <script type="text/javascript" src="i/js/locale.js"></script>
         <script type="text/javascript" src="i/js/app.js"></script>
         <script type="text/javascript" src="i/js/tcpclient.js"></script>
         <script type="text/javascript" src="i/js/remoteevent.js"></script>
@@ -25,7 +26,7 @@
         </video>
         <div class="notifications"></div>
         <div class="sidebar">
-            <div class="topbar"><h1>Song Queue</h1></div>
+            <div class="topbar"><h1 class="translate" data-name="queue"></h1></div>
             <div class="song_queue_wrapper">
                 <div class="song_queue"></div>
                 <div class="controls">
@@ -47,7 +48,7 @@
                             <div class="column half">
                                 <table>
                                     <tr>
-                                        <td width="50">Pitch</td>
+                                        <td width="50" class="translate" data-name="pitch"></td>
                                         <td width="30" align="center" class="pitch" data-type="minus"><a href="#"><img src="i/img/icon_minus.png"></a></td>
                                         <td width="30" align="center" id="pitch">0</td>
                                         <td width="30" align="center" class="pitch" data-type="major"><a href="#"><img src="i/img/icon_plus.png"></a></td>
@@ -57,7 +58,7 @@
                             <div class="column half">
                                 <table>
                                     <tr>
-                                        <td width="50">Tempo</td>
+                                        <td width="50" class="translate" data-name="tempo"></td>
                                         <td width="30" align="center" class="tempo" data-type="minus"><a href="#"><img src="i/img/icon_minus.png"></a></td>
                                         <td width="50" align="center" id="tempo">100%</td>
                                         <td width="30" align="center" class="tempo" data-type="major"><a href="#"><img src="i/img/icon_plus.png"></a></td>
@@ -69,26 +70,10 @@
                         <div class="controls__sliders">
                             <div class="slider_wrapper">
                                 <div class="slider_box">
-                                    <input type="range" min="0" max="100" value="0" id="slider-general">
+                                    <input type="range" name="general" min="0" max="100" value="0" id="slider-general">
                                 </div>
-                                <div class="slider__caption">General volume</div>
+                                <div class="slider__caption"></div>
                             </div>
-
-                            <div class="slider_wrapper">
-                                <div class="slider_box">
-                                    <input type="range" min="0" max="100" value="0" id="slider-backing">
-                                </div>
-                                <div class="slider__caption">Backing vocals volume</div>
-                            </div>
-
-                            <div class="slider_wrapper">
-                                <div class="slider_box">
-                                    <input type="range" min="0" max="100" value="0" id="slider-lead_1">
-                                </div>
-                                <div class="slider__caption">Lead vocals</div>
-                            </div>
-
-                            <div class="clearfix"></div>
                         </div>
                     </div>
                 </div>
@@ -97,9 +82,9 @@
         <div class="content">
             <div class="topbar">
                 <a href="#" class="topbar__left" id="home"><img src="i/img/icon_home.png"></a>
-                <h1>KaraFun</h1>
+                <h1 class="translate" data-name="appName"></h1>
                 <div class="topbar__search_container">
-                    <input type="text" class="topbar__search" placeholder="Enter your search here">
+                    <input type="text" class="topbar__search">
                     <a href="#" class="empty_search"><img src="i/img/icon_delete.png"></a>
                 </div>
                 <a href="#" class="topbar__right"><img src="i/img/icon_search.png"></a>
@@ -132,8 +117,8 @@
         <div class="splashscreen">
             <div class="splashscreen__content">
                 <div id="loader"></div>
-                <h1>Connecting with KaraFun Player...</h1>
-                <h3>It will take just a sec. If nothing happens within a couple of minutes, please make sure KaraFun Player is running.</h3>
+                <h1 class="translate" data-name="connecting"></h1>
+                <h3 class="translate" data-name="connecting_desc"></h3>
             </div>
             <a href="#" id="settings_splashscreen"><img src="i/img/settings_white.png"></a>
         </div>
