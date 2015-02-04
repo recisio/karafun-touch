@@ -69,6 +69,9 @@ Player.prototype = {
         if(!elem.length) {
             elem = this._createVolumeSlider(name);
         }
+        if(caption.length == 0 && name.indexOf("lead")>-1) {
+            caption = chrome.i18n.getMessage("lead");
+        }
         elem.parent().next().html(caption);
         elem.val(volume);
     },

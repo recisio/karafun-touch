@@ -24,5 +24,8 @@
     },
     "tempo": {
         "message": "Tempo"
+    },
+    "lead": {
+        "message": "Guide"
     }
 }
