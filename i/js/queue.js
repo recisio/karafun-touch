@@ -8,17 +8,40 @@ Queue.prototype = {
         queue = xml.find("queue");
         items = queue.children();
         content = "";
+        newQueue = new Array();
         items.each(function(){
             song = new Song($(this));
             song.isInQueue();
-            content += song.render();
+            newQueue[song.getId()] = song;
             if(song.isPlaying()) {
                 RemoteEvent.create("play", {
                     song:song
                 });
             }
         });
-        this.container.html(content);
+        
+        var currentQueue = new Array();
+        var position = 0;
+        this.container.find(".song_card").each(function(){
+            currentQueue[$(this).data("id")] = $(this);
+            position++
+        });
+        
+        //check deleted
+        $.each(currentQueue, function(key,value) {
+            if(!newQueue[key]) {
+                value.remove();
+            }
+        });
+        
+        //check added
+        var that = this;
+        $.each(newQueue, function(key,value) {
+            if(!currentQueue[key]) {
+                that.container.append(value.render());
+            }
+        });
+        
     },
     clear: function() {
         RemoteEvent.create("notify", {
