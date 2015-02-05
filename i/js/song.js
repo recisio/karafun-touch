@@ -34,6 +34,9 @@ Song.prototype = {
         var seconds = this._duration - minutes * 60;
         return minutes+":"+seconds;
     },
+    isEqualTo: function(song) {
+        return (this._title == song._title && this._artist == song._artist && this._duration == song._duration);
+    },
     _parse: function(song) {
         this._id = song.attr("id");
         this._status = song.attr("status");

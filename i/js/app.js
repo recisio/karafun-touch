@@ -15,20 +15,4 @@ $(document).ready(function () {
             clearTimeout();
         }
     }, 1000);
-
-    $('body').on('mouseup', '.click_feedback', function () {
-        $(this).addClass('clicked');
-        clearTimeout(eff_timeout);
-        eff_timeout = setTimeout(function () {
-            $('.click_feedback').removeClass('clicked');
-        }, 500);
-    }).on('mousedown', '.lift', function () {
-        var me = $(this);
-        eff_timeout = setTimeout(function () {
-            me.addClass('lifted');
-        }, 500);
-    }).on('mouseup', '.lift', function () {
-        $(this).removeClass('lifted');
-    });
-
 });

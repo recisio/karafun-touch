@@ -1,6 +1,7 @@
 Queue = function() {
     this.container = $(".song_queue");
     this._initHandlers();
+    this._currentQueue = new Array();
 }
 
 Queue.prototype = {
@@ -20,28 +21,25 @@ Queue.prototype = {
             }
         });
         
-        var currentQueue = new Array();
-        var position = 0;
-        this.container.find(".song_card").each(function(){
-            currentQueue[$(this).data("id")] = $(this);
-            position++
-        });
-        
-        //check deleted
-        $.each(currentQueue, function(key,value) {
-            if(!newQueue[key]) {
-                value.remove();
-            }
-        });
-        
         //check added
         var that = this;
+        var i = 0;
         $.each(newQueue, function(key,value) {
-            if(!currentQueue[key]) {
-                that.container.append(value.render());
+            html = $(value.render());
+            if(that._currentQueue[key] && !that._currentQueue[key].isEqualTo(value)) {
+                $("#song_"+key).replaceWith(html);
+                that._currentQueue[value.getId()] = value;
+            } else if (!that._currentQueue[key]) {
+                that._currentQueue[value.getId()] = value;
+                that.container.append($(value.render()));
             }
+            i++;
         });
         
+        for(var j=i;j<this._currentQueue.length;j++) {
+            $("#song_"+j).remove();
+            delete this._currentQueue[j];
+        }  
     },
     clear: function() {
         RemoteEvent.create("notify", {
