@@ -25,6 +25,8 @@ body{
     left: 0;
     object-fit: cover;
     width: 100%;
+    background-size: cover;
+    height: 100%;
 }
 
 /** TYPOGRAPHY **/
@@ -84,16 +86,16 @@ input[type="text"]:focus{
 
 .sidebar{
     width: 480px;
-    background: rgba(240,240,240,.6);
+    background: rgba(240,240,240,.9);
     height: 100%;
     position: fixed;
 }
 
 .content{
     left: 480px;
-    background: rgba(250,250,250,.8);
+    background: rgba(250,250,250,.9);
     height: 100vh;
-    overflow: scroll;
+    overflow: auto;
     position: fixed;
     z-index: 3;
     width: calc(100% - 480px);
@@ -125,7 +127,7 @@ input[type="text"]:focus{
 }
 
 .content .topbar{
-    background: rgba(208,1,125,.5);
+    background: rgba(208,1,125,.9);
 }
 
 .topbar__left{
@@ -312,6 +314,7 @@ a:active .song_card{
     opacity: 0;
     display: none;
     z-index: 2;
+    white-space: nowrap;
 }
 
 .card__popup.visible{
