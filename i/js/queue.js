@@ -30,8 +30,9 @@ Queue.prototype = {
                 $("#song_"+key).replaceWith(html);
                 that._currentQueue[value.getId()] = value;
             } else if (!that._currentQueue[key]) {
+                html.addClass("appear");
                 that._currentQueue[value.getId()] = value;
-                that.container.append($(value.render()));
+                that.container.append(html);
             }
             i++;
         });

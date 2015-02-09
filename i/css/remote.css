@@ -654,21 +654,33 @@ a#settings{
 .clicked{
     -webkit-animation: clickfeedback .5s ease-out;
 }
+.appear {
+    -webkit-animation: appear 1s ease-out;
+}
 
 @-webkit-keyframes clickfeedback {
     from {
-        box-shadow: 0 0 0 1px rgba(208,1,125,1);
+    box-shadow: 0 0 0 1px rgba(208,1,125,1);
+}
+to {
+    box-shadow: 0 0 100px rgba(208,1,125,0);
+}
+}
+
+@-webkit-keyframes appear {
+    from {
+    opacity : 0;
     }
     to {
-        box-shadow: 0 0 100px rgba(208,1,125,0);
+        opacity : 1;
     }
 }
 
 @-webkit-keyframes lift {
     from {
-        box-shadow: 0 0 0 rgba(0,0,0,0);
-    }
-    to {
-        box-shadow: 0 0 50px 5px rgba(0,0,0,.4);
-    }
+    box-shadow: 0 0 0 rgba(0,0,0,0);
+}
+to {
+    box-shadow: 0 0 50px 5px rgba(0,0,0,.4);
+}
 }
