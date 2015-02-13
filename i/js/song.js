@@ -30,8 +30,9 @@ Song.prototype = {
         this._isInQueue=true;
     },
     getFormattedDuration: function() {
-        var minutes = Math.floor(this._duration / 60);
-        var seconds = this._duration - minutes * 60;
+        var e = this._duration.split(",");
+        var minutes = Math.floor(e[0] / 60);
+        var seconds = e[0] - minutes * 60;
         return minutes+":"+seconds;
     },
     isEqualTo: function(song) {

@@ -243,8 +243,8 @@ input.topbar__search:focus{
 }
 .song_card img.delete {
     position: absolute;
-    right: 5px;
-    top: 5px;
+    right: -15px;
+    top: -15px;
 }
 
 .song_card.dragenter {
