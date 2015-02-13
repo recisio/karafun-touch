@@ -50,8 +50,7 @@ Song.prototype = {
         if(this._isInQueue) {
             html+="<img class='delete' src='/i/img/icon_delete.png'>";
         }
-        html += "<div class='song_card__icon'><img src='i/img/icon_song.png'></div>\n\
-<div class='song_card__left'><span class='song_card__title'>"+this._title+"</span><span class='song_card__artist'>"+this._artist+"</span></div>\n\
+        html += "<div class='song_card__left'><span class='song_card__title'>"+this._title+"</span><span class='song_card__artist'>"+this._artist+"</span></div>\n\
 <div class='song_card__right'>"+this.getFormattedDuration()+"</div>\n\
 <div class='clearfix'></div>";
         if(!this._isInQueue) {
