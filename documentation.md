@@ -133,3 +133,12 @@ Response to getList/search
         ...
     </list>
 
+### Screen Management
+
+	<action type="screenPosition" x="{x}" y="{y}" width="{width}" height="{height}"></action>
+
+Set the screen position
+
+	<action type="fullscreen"></action>
+
+Set the second screen into fullscreen mode
