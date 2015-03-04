@@ -33,10 +33,14 @@ Song.prototype = {
         var e = this._duration.split(",");
         var minutes = Math.floor(e[0] / 60);
         var seconds = e[0] - minutes * 60;
-        return minutes+":"+seconds;
+        return this._pad(minutes,2)+":"+this._pad(seconds,2);
     },
     isEqualTo: function(song) {
         return (this._title == song._title && this._artist == song._artist && this._duration == song._duration);
+    },
+    _pad : function(str, max) {
+        str = str.toString();
+        return str.length < max ? this._pad("0" + str, max) : str;
     },
     _parse: function(song) {
         this._id = song.attr("id");
