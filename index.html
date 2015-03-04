@@ -110,26 +110,31 @@
         <!-- SETTINGS -->
         <div class="settings">
             <div class="settings__content">
-                <h1>Settings (Version <span class="version"></span>)</h1>
+                <h1><span class="translate" data-name="settings"></span> (Version <span class="version"></span>)</h1>
                 <form>
                     <div class="setting">
-                        <div class="caption">Port number (used to communicate with KaraFun Player)</div>
+                        <div class="caption translate" data-name="portnumber"></div>
                         <div class="value"><input id="port" name="port" type="text" value=""></div>
                         <div class="clearfix"></div>
                     </div>
                     <div class="setting">
-                        <div class="caption">Server URL</div>
+                        <div class="caption translate" data-name="server"></div>
                         <div class="value"><input id="url" name="url" type="text" value=""></div>
                         <div class="clearfix"></div>
                     </div>
                     <div class="setting">
-                        <div class="caption">Launch the app in fullscreen</div>
+                        <div class="caption translate" data-name="launchInFullscreen"></div>
                         <div class="value"><input type="checkbox" name="fullscreen" id="fullscreen"></div>
                         <div class="clearfix"></div>
                     </div>
+                    <div class="setting">
+                        <div class="caption translate" data-name="lyricsScreen"></div>
+                        <div class="value"><input id="screen" type="text" name="lyrics-screen" value=""></div>
+                        <div class="clearfix"></div>
+                    </div>
                     <div class="confirm">
-                        <button class="btn btn--green" name="submit" id="settings__save">Save</button>
-                        <button class="btn btn--red" name="cancel" id="settings__cancel">Cancel</button>
+                        <button class="btn btn--green translate" name="submit" id="settings__save" data-name="save"></button>
+                        <button class="btn btn--red translate" name="cancel" id="settings__cancel" data-name="cancel"></button>
                     </div>
                 </form>
             </div>

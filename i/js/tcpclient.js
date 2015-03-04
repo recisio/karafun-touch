@@ -49,8 +49,14 @@ TcpClient.prototype = {
     _onOpenCallback : function() {
         //Hide the socket connect window
         clearTimeout(this.timeout);
+        var that = this;
         $(".splashscreen").hide();
-        //this.notify("getStatus");
+        RemoteEvent.create("notify", {
+            type:"screen",
+            args: {
+                "screen":that.settings.screen
+                }
+        });
         this.notify("getCatalogList")
     },
     _onMessageCallback : function(msg) {

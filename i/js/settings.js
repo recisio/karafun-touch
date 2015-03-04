@@ -3,9 +3,11 @@ Settings = function() {
     this.element = document.querySelector(".settings");
     this.portElt = document.querySelector("#port");
     this.urlElt = document.querySelector("#url");
+    this.screenElt = document.querySelector("#screen");
     this.fullscreen = document.querySelector("#fullscreen");
     this.port = "";
     this.url = "";
+    this.screen = 0;
     this._initHandlers();
     this._initValues();
 }
@@ -25,10 +27,12 @@ Settings.prototype = {
         uri+=this.urlElt.value+":"+this.portElt.value;
         var that = this;
         chrome.storage.local.set({
-            "uri":uri
+            "uri":uri,
+            "screen" : parseInt(that.screenElt.value)
         }, function(){
             that.port = that.portElt.value
             that.url = that.urlElt.value
+            that.screen = that.screenElt.value
             that.hide();
         });
     },
@@ -43,6 +47,15 @@ Settings.prototype = {
                 }
                 that.isReady = true;
             }
+        });
+        var screen =0;        
+        chrome.storage.local.get("screen", function(item) {
+            if(item.screen) {
+                screen = item.screen;
+            } else {
+                screen = 0;
+            }
+            that.screenElt.value = that.screen = screen;
         });
         document.querySelector(".version").innerHTML = chrome.runtime.getManifest().version;
     },

@@ -36,5 +36,23 @@
     },
     "cancel": {
         "message" : "Cancel"
+    },
+    "settings": {
+        "message" : "Settings"
+    },
+    "portnumber": {
+        "message" : "Port number (used to communicate with KaraFun Player)"
+    },
+    "server": {
+        "message" : "Server URL"
+    },
+    "launchInFullscreen": {
+        "message" : "Launch the app in fullscreen"
+    },
+    "save": {
+        "message" : "Save"
+    },
+    "lyricsScreen": {
+        "message" : "Screen number of secondary screen"
     }
 }
