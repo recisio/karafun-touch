@@ -4,7 +4,6 @@ Settings = function() {
     this.portElt = document.querySelector("#port");
     this.urlElt = document.querySelector("#url");
     this.screenElt = document.querySelector("#screen");
-    this.fullscreen = document.querySelector("#fullscreen");
     this.port = "";
     this.url = "";
     this.screen = 0;
@@ -61,7 +60,7 @@ Settings.prototype = {
     },
     _initHandlers: function() {
         var that = this;
-        document.querySelector('#settings_splashscreen').onclick = function() {
+        document.querySelector('.settings_splashscreen').onclick = function() {
             that.element.classList.add("show");
         };
         document.querySelector("html").onkeyup = function(event) {
