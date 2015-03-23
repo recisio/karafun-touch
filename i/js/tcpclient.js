@@ -54,7 +54,7 @@ TcpClient.prototype = {
             type:"screen",
             args: {
                 "screen":that.settings.screen
-                }
+            }
         });
         this.notify("getCatalogList")
     },
@@ -65,7 +65,7 @@ TcpClient.prototype = {
     },
     _onCloseCallback : function() {
         //Show the socket connect window
-        $(".splashscreen").show();
+        $(".splashscreen").css("display","table");
         var that = this;
         this.timeout = setTimeout(function(){
             tcpClient = that.connect();
