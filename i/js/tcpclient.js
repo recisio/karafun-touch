@@ -1,5 +1,4 @@
 TcpClient = function(settings) {
-    this.notificationId = 0;
     this.queryId=0;
     this.settings = settings;
     var that = this;
