@@ -21,6 +21,7 @@ Catalogs.prototype = {
         });
         
         document.addEventListener('showstyles', function(ev) {
+            Catalogs.listId = 0;
             that.container.show();
         });
         

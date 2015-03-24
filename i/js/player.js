@@ -75,6 +75,7 @@ Player.prototype = {
             caption = chrome.i18n.getMessage("lead");
         }
         elem.parent().next().html(caption);
+        elem.parent().next().css("color",color);
         elem.val(volume);
     },
     _createVolumeSlider: function(name) {

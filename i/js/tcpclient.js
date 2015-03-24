@@ -1,6 +1,4 @@
 TcpClient = function(settings) {
-    this.notificationId = 0;
-    this.queryId=0;
     this.settings = settings;
     var that = this;
     document.addEventListener("notify",function(ev) {
@@ -43,14 +41,17 @@ TcpClient.prototype = {
         socketString+="</action>";
         this.socket.send(socketString);
     },
-    incrementQueryId: function() {
-        this.queryId++;
-    },
     _onOpenCallback : function() {
         //Hide the socket connect window
         clearTimeout(this.timeout);
+        var that = this;
         $(".splashscreen").hide();
-        //this.notify("getStatus");
+        RemoteEvent.create("notify", {
+            type:"screen",
+            args: {
+                "screen":that.settings.screen
+            }
+        });
         this.notify("getCatalogList")
     },
     _onMessageCallback : function(msg) {
@@ -60,7 +61,7 @@ TcpClient.prototype = {
     },
     _onCloseCallback : function() {
         //Show the socket connect window
-        $(".splashscreen").show();
+        $(".splashscreen").css("display","table");
         var that = this;
         this.timeout = setTimeout(function(){
             tcpClient = that.connect();

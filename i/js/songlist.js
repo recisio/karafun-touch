@@ -2,6 +2,7 @@ Songlist = function() {
     this._total = 0;
     this._offset = 0;
     this._countItems = 0;
+    this._searchValue = "";
     this.container = $(".content__inner .top");
     this._launchNext = false;
     this._initHandlers();
@@ -34,13 +35,28 @@ Songlist.prototype = {
     _loadNext: function() {
         this._offset+=Catalogs.limit;
         var args = new Array();
-        args["id"] = Catalogs.listId;
+        var type = "getList"
+        var value = undefined;
         args["offset"] = this._offset;
         args["limit"] = Catalogs.limit;
+        if(Catalogs.listId) {
+            args["id"] = Catalogs.listId;
+        } else {
+            type = "search";
+            value = this._searchValue;
+        }
         RemoteEvent.create("notify", {
-            type:"getList",
-            args:args
+            type:type,
+            args:args,
+            value:value
         });
+    },
+    _reset : function() {
+        this._offset = 0;
+        this._total = 0;
+        this._countItems = 0;
+        this._launchNext = false;
+        this.container.empty();
     },
     _initHandlers: function() {
         var that = this;
@@ -49,12 +65,22 @@ Songlist.prototype = {
         });
         
         document.addEventListener("showstyles", function() {
-            that._offset = 0;
-            that._total = 0;
-            this._countItems = 0;
-            that._launchNext = false;
-            that.container.empty();
+            that._reset();
             that.container.hide();
+        });
+        
+        document.addEventListener("search",function(ev) {
+            Catalogs.listId = 0;
+            that._searchValue  = ev.detail;
+            that._reset();
+            var args = new Array();
+            args["offset"] = that._offset;
+            args["limit"] = Catalogs.limit;
+            RemoteEvent.create("notify", {
+                type: "search",
+                args: args,
+                value : that._searchValue
+            });
         });
         
         this.container.on("mouseup",".song_card",function() {

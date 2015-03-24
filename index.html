@@ -11,7 +11,6 @@
         <script type="text/javascript" src="i/js/app.js"></script>
         <script type="text/javascript" src="i/js/tcpclient.js"></script>
         <script type="text/javascript" src="i/js/remoteevent.js"></script>
-        <script type="text/javascript" src="i/js/notification.js"></script>
         <script type="text/javascript" src="i/js/settings.js"></script>
         <script type="text/javascript" src="i/js/song.js"></script>
         <script type="text/javascript" src="i/js/player.js"></script>
@@ -23,8 +22,7 @@
     </head>
     <body>
         <video id="video_background" autoplay loop src="i/videos/video_bg_2.mp4">
-        </video
-        <div class="notifications"></div>
+        </video>
         <div class="sidebar">
             <div class="topbar"><h1 class="translate" data-name="queue"></h1></div>
             <div class="song_queue_wrapper">
@@ -92,7 +90,7 @@
             <div class="content__inner">
                 <div class="top"></div>
                 <div class="genres"></div>
-                <a href="#" id="settings"><img src="i/img/settings_gray.png"></a>
+                <a href="#" class="settings_splashscreen"><img src="i/img/settings_gray.png"></a>
             </div>
         </div>
 
@@ -103,33 +101,33 @@
                 <h1 class="translate" data-name="connecting"></h1>
                 <h3 class="translate" data-name="connecting_desc"></h3>
             </div>
-            <a href="#" id="settings_splashscreen"><img src="i/img/settings_white.png"></a>
+            <a href="#" class="settings_splashscreen"><img src="i/img/settings_white.png"></a>
         </div>
         <!-- END -->
 
         <!-- SETTINGS -->
         <div class="settings">
             <div class="settings__content">
-                <h1>Settings (Version <span class="version"></span>)</h1>
+                <h1><span class="translate" data-name="settings"></span> (Version <span class="version"></span>)</h1>
                 <form>
                     <div class="setting">
-                        <div class="caption">Port number (used to communicate with KaraFun Player)</div>
+                        <div class="caption translate" data-name="portnumber"></div>
                         <div class="value"><input id="port" name="port" type="text" value=""></div>
                         <div class="clearfix"></div>
                     </div>
                     <div class="setting">
-                        <div class="caption">Server URL</div>
+                        <div class="caption translate" data-name="server"></div>
                         <div class="value"><input id="url" name="url" type="text" value=""></div>
                         <div class="clearfix"></div>
                     </div>
                     <div class="setting">
-                        <div class="caption">Launch the app in fullscreen</div>
-                        <div class="value"><input type="checkbox" name="fullscreen" id="fullscreen"></div>
+                        <div class="caption translate" data-name="lyricsScreen"></div>
+                        <div class="value"><input id="screen" type="text" name="lyrics-screen" value=""></div>
                         <div class="clearfix"></div>
                     </div>
                     <div class="confirm">
-                        <button class="btn btn--green" name="submit" id="settings__save">Save</button>
-                        <button class="btn btn--red" name="cancel" id="settings__cancel">Cancel</button>
+                        <button class="btn btn--green translate" name="submit" id="settings__save" data-name="save"></button>
+                        <button class="btn btn--red translate" name="cancel" id="settings__cancel" data-name="cancel"></button>
                     </div>
                 </form>
             </div>

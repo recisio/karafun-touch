@@ -14,7 +14,7 @@
         "message": "Entrez votre recherche"
     },
     "connecting": {
-        "message": "Connextion avec KaraFun Player..."
+        "message": "Connexion avec KaraFun Player..."
     },
     "connecting_desc": {
         "message": "Cela peut prendre quelques secondes. Si rien ne se passe, soyez sur que KaraFun Player est en cours de fonctionnement."
@@ -36,5 +36,24 @@
     },
     "cancel": {
         "message" : "Annuler"
+    },
+    "settings": {
+        "message" : "Préférences"
+    },
+    "portnumber": {
+        "message" : "Port (utilisé pour communiquer avec KaraFun Player)"
+    },
+    "server": {
+        "message" : "Url du serveur"
+    },
+    "launchInFullscreen": {
+        "message" : "Lancer l'application en plein écran"
+    },
+    "save": {
+        "message" : "Sauvegarder"
+    },
+    "lyricsScreen": {
+        "message" : "Numéro d'écran écran secondaire"
     }
+    
 }
