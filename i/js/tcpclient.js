@@ -1,5 +1,4 @@
 TcpClient = function(settings) {
-    this.queryId=0;
     this.settings = settings;
     var that = this;
     document.addEventListener("notify",function(ev) {
@@ -41,9 +40,6 @@ TcpClient.prototype = {
         }
         socketString+="</action>";
         this.socket.send(socketString);
-    },
-    incrementQueryId: function() {
-        this.queryId++;
     },
     _onOpenCallback : function() {
         //Hide the socket connect window
