@@ -1,6 +1,5 @@
 var tcpClient;
 var settings;
-var eff_timeout;
 $(document).ready(function () {
     settings = new Settings();
     setTimeout(function () {
