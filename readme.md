@@ -1,4 +1,4 @@
-# KaraFun Remote
+# KaraFun Touch
 
 **KaraFun Remote** is an Open Source remote control for **KaraFun Player**, the karaoke player designed for Windows ([http://www.karafun.com](http://www.karafun.com)).
 
