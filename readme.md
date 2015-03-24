@@ -1,10 +1,10 @@
 # KaraFun Touch
 
-**KaraFun Remote** is an Open Source remote control for **KaraFun Player**, the karaoke player designed for Windows ([http://www.karafun.com](http://www.karafun.com)).
+**KaraFun Touch** is an Open Source Touchscreen interface control for **KaraFun Player**, the karaoke player designed for Windows ([http://www.karafun.com](http://www.karafun.com)).
 
 ## Installation
 
-KaraFun Remote has been designed as a Chrome App. In order to install it, go to your extensions in Google Chrome and add the folder where KaraFun Remote files are stored.
+KaraFun Touch has been designed as a Chrome App. In order to install it, go to your extensions in Google Chrome and add the folder where KaraFun Touch files are stored.
 
 ##General information
 
