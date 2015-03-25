@@ -15,7 +15,7 @@ Search.prototype = {
             RemoteEvent.create("showstyles");
         });
         var that = this;
-        $(".topbar__search").on("keydown", function() {
+        $(".topbar__search").on("keyup", function() {
             clearTimeout(that._timeout);
             var t = $(this);
             that._timeout = setTimeout(function() {
