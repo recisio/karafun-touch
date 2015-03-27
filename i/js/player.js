@@ -154,7 +154,7 @@ Player.prototype = {
             args["volume_type"] = name;
             that._fireEvent("setVolume",currentVolume, args);
         });
-        $(".controls__sliders").on("input",".slider_box input", function() {
+        $(".controls__sliders").on("change",".slider_box input", function() {
             var args = [];
             args["volume_type"] = $(this).attr("name");
             that._fireEvent("setVolume",this.value, args);
