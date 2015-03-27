@@ -1,5 +1,8 @@
 # KaraFun Touch
 
+![KaraFun Touch](https://github.com/karafun/touch/blob/master/i/img/gh_illus.png?raw=true)
+--
+
 **KaraFun Touch** is an Open Source Touchscreen interface control for **KaraFun Player**, the karaoke player designed for Windows ([http://www.karafun.com](http://www.karafun.com)).
 
 ## Installation
