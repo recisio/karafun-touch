@@ -1,11 +1,9 @@
 {
     "appName": {
-        "message": "KaraFun Remote",
-        "description": "The title of the application, displayed in the web store."
+        "message": "KaraFun Touch"
     },
     "appDesc": {
-        "message": "Control your KaraFun Player!", 
-        "description":"The description of the application, displayed in the web store."
+        "message": "KaraFun Touch is a touchscreen interface that controls KaraFun Player seamlessly. Singing karaoke is now at a fingertip!"
     },
     "queue": {
         "message": "Queue" 

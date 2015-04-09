@@ -1,11 +1,16 @@
 {
     "name": "__MSG_appName__",
     "description": "__MSG_appDesc__",
+    "icons": {
+        "16": "/i/img/icon_16.png",
+        "48": "/i/img/icon_48.png",
+        "128": "/i/img/icon_128.png"
+    },
     "default_locale": "en",
-    "version": "0.1",
+    "version": "1.0",
     "manifest_version": 2,
-    "minimum_chrome_version" : "36",
-    "permissions" :  ["fullscreen","storage"],
+    "minimum_chrome_version": "36",
+    "permissions": ["fullscreen", "storage"],
     "app": {
         "background": {
             "scripts": ["/i/js/background.js"]

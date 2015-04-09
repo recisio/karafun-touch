@@ -1,11 +1,9 @@
 {
     "appName": {
-        "message": "KaraFun Remote",
-        "description": "Le titre de l'application sur le Web Store"
+        "message": "KaraFun Touch"
     },
     "appDesc": {
-        "message": "Controlez KaraFun Player à distance!", 
-        "description":"La description de l'application sur le Web Store"
+        "message": "KaraFun Touch est une interface de contrôle tactile pour KaraFun Player, lecteur de karaoké. Votre prochaine soirée karaoké est à portée de doigt !"
     },
     "queue": {
         "message": "File d'attente" 
