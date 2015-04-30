@@ -14,13 +14,14 @@ Songlist.prototype = {
         this._total = list.attr("total");
         items = list.children();
         content = "";
+        var that = this;
         items.each(function(){
             song = new Song($(this));
-            if(this._countItems!= 0 && this._countItems % 2 == 0) {
+            if(that._countItems!= 0 && that._countItems % 2 == 0) {
                 content += "<div class='clearfix'></div>";
             }
             content += "<div class='half column'>"+song.render()+"</div>";
-            this._countItems++;
+            that._countItems++;
         });
         if(this.container.is(":visible")) {
             this.container.append(content);

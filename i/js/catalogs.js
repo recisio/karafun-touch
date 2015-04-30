@@ -26,6 +26,9 @@ Catalogs.prototype = {
         });
         
         $("#home").click(function() {
+            RemoteEvent.create("notify", {
+                type : "getCatalogList"
+            });
             RemoteEvent.create("showstyles");
         });
         $(".content__inner").on("click",".styles_card",function() {
