@@ -74,7 +74,7 @@ Response to getStatus
 
 ### Volume management
 
-    <action type="setVolume" type="{volume_type}">{volume_between_0_100}</action>
+    <action type="setVolume" volume_type="{volume_type}">{volume_between_0_100}</action>
 `volume_type` possible values are from the getStatus
 
 ### Song queue management
