@@ -14,6 +14,7 @@ KaraFun Touch has been designed as a Chrome App. In order to install it, go to y
 Volume values are between 0 (muted) and 100 (full volume)  
 Time and duration values are in seconds (can be float)  
 Color are in HTML format #RRGGBB
+Communications are done via Websocket
 
 ##List of actions
 
